@@ -8,6 +8,7 @@ import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
+import TripList from './pages/TripList/TripList'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -63,11 +64,18 @@ function App() {
           }
         />
         <Route
+          path="/trips"
+          element={
+            <ProtectedRoute user={user}>
+              <TripList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/"
           element={
             <Landing />
           }
-        
         />
       </Routes>
     </>

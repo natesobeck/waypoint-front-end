@@ -13,6 +13,7 @@ const NavBar = ({ user, handleLogout }) => {
         </ul>
       :
         <ul>
+          <li><NavLink to="/">Home</NavLink></li>
           <li><NavLink to="/auth/login">Log In</NavLink></li>
           <li><NavLink to="/auth/signup">Sign Up</NavLink></li>
         </ul>

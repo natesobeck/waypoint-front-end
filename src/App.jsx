@@ -62,6 +62,13 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/"
+          element={
+            <Landing />
+          }
+        
+        />
       </Routes>
     </>
   )

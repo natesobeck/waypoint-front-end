@@ -38,6 +38,12 @@ function App() {
     setUser(authService.getUser())
   }
 
+  const handleAddTrip = async (tripFormData) => {
+    const newTrip = await tripService.create(tripFormData)
+    setTrips([newTrip, ...trips])
+    navigate('/trips')
+  }
+
   useEffect(() => {
     const fetchAllTrips = async () => {
       const tripsData = await tripService.index()
@@ -95,7 +101,7 @@ function App() {
           path="/trips/new"
           element={
             <ProtectedRoute user={user}>
-              <NewTrip />
+              <NewTrip handleAddTrip={handleAddTrip} />
             </ProtectedRoute>
           }
         />

@@ -23,7 +23,6 @@ const TripDetails = () => {
     <main>
       <h1>
         This is a trip details page
-        {trip.destination.city}
       </h1>
     </main>
   )

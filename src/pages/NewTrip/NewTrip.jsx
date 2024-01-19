@@ -1,9 +1,14 @@
 // css
 // import styles from './NewTrip.module.css'
 
-const NewTrip = () => {
+// components
+import TripCard from "../../components/TripCard/TripCard"
+
+const NewTrip = (props) => {
   return (  
-    <h1>Yo</h1>
+    <main>
+      This is the new trip page
+    </main>
   )
 }
 

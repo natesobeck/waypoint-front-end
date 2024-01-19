@@ -4,7 +4,15 @@ import styles from './Landing.module.css'
 const Landing = ({ user }) => {
   return (
     <main className={styles.container}>
-      <h1>hello, {user ? user.name : 'friend'}</h1>
+      <section className={styles['welcome-section']}>
+        <h1>Welcome to Waypoint, {user ? user.name[0].toUpperCase() + user.name.slice(1).toLowerCase() : 'friend'}</h1>
+      </section>
+      <section className={styles['features-section']}>
+        <h1>This will list the freatures of the app.</h1>
+      </section>
+      <section className={styles['about-section']}>
+        <h1>This will be the about section</h1>
+      </section>
     </main>
   )
 }

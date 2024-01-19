@@ -1,10 +1,10 @@
 // css
-import styles from './TripList.module.css'
+// import styles from './TripList.module.css'
 
 const TripList = () => {
   return (  
     <main>
-      Trip List
+      Here's a list of trips:
     </main>
   )
 }

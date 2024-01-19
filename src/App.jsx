@@ -1,5 +1,5 @@
 // npm modules
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 // pages
@@ -9,6 +9,7 @@ import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import TripList from './pages/TripList/TripList'
+import NewTrip from './pages/NewTrip/NewTrip'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -16,12 +17,14 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 // services
 import * as authService from './services/authService'
+import * as tripService from './services/tripService'
 
 // styles
 import './App.css'
 
 function App() {
   const [user, setUser] = useState(authService.getUser())
+  const [trips, setTrips] = useState([])
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -33,6 +36,14 @@ function App() {
   const handleAuthEvt = () => {
     setUser(authService.getUser())
   }
+
+  useEffect(() => {
+    const fetchAllTrips = async () => {
+      const tripsData = await tripService.index()
+      setTrips(tripsData)
+    }
+    if (user) fetchAllTrips()
+  }, [user])
 
   return (
     <>
@@ -67,7 +78,15 @@ function App() {
           path="/trips"
           element={
             <ProtectedRoute user={user}>
-              <TripList />
+              <TripList trips={trips}/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/trips/new"
+          element={
+            <ProtectedRoute user={user}>
+              <NewTrip />
             </ProtectedRoute>
           }
         />

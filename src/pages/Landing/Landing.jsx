@@ -11,6 +11,7 @@ const Landing = ({ user }) => {
         <div className={styles['welcome-section-container']}>
           <h1>Welcome to Waypoint, {user ? user.name[0].toUpperCase() + user.name.slice(1).toLowerCase() : 'friend'}</h1>
           {!user && <Link to='/auth/signup'>Get Started Now!</Link>}
+          {user && <Link to='/trips/new'>Add a Trip</Link>}
         </div>
       </section>
       <section className={styles['features-section']}>

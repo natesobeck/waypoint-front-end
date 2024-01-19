@@ -1,10 +1,11 @@
 // css
 // import styles from './TripList.module.css'
 
-const TripList = () => {
+const TripList = (props) => {
+  console.log(props)
   return (  
     <main>
-      Here's a list of trips:
+      <h1>Trip List</h1>
     </main>
   )
 }

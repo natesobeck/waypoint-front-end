@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const TripCard = ({ trip }) => {
   return (  
-    <Link>
+    <Link to={`/trips/${trip._id}`}>
       <h1>This is a trip card</h1>
     </Link>
   )

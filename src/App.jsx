@@ -9,6 +9,7 @@ import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import TripList from './pages/TripList/TripList'
+import TripDetails from './pages/TripDetails/TripDetails'
 import NewTrip from './pages/NewTrip/NewTrip'
 
 // components
@@ -79,6 +80,14 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <TripList trips={trips}/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/trips/:tripId"
+          element={
+            <ProtectedRoute user={user}>
+              <TripDetails />
             </ProtectedRoute>
           }
         />

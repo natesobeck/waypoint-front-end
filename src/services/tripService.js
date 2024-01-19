@@ -14,6 +14,17 @@ async function index() {
   }
 }
 
+async function show(tripId) {
+  try {
+    const res = await fetch(`${BASE_URL}/${tripId}`, {
+      headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 async function create(tripFormData) {
   try {
     const res = await fetch(BASE_URL, {
@@ -32,5 +43,6 @@ async function create(tripFormData) {
 
 export {
   index,
+  show,
   create
 }

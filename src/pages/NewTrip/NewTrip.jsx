@@ -1,9 +1,10 @@
 // npm modules
 import { useState } from "react"
+import DatePicker from "react-datepicker"
 
 // css
+import "react-datepicker/dist/react-datepicker.css"
 // import styles from './NewTrip.module.css'
-
 
 const NewTrip = (props) => {
   const [formData, setFormData] = useState({
@@ -13,8 +14,8 @@ const NewTrip = (props) => {
     state: '',
     country: '',
     zipCode: '',
-    departureDate: new Date().toLocaleString(),
-    returnDate: new Date().toLocaleString(),
+    departureDate: new Date(),
+    returnDate: new Date(),
     travelMethod: 'car',
   })
 
@@ -24,7 +25,20 @@ const NewTrip = (props) => {
 
   const handleSubmit = evt => {
     evt.preventDefault()
-    props.handleAddTrip(formData)
+    const adjustedFormData = {
+      name: formData.name,
+      departureDate: formData.departureDate,
+      returnDate: formData.returnDate,
+      travelMethod: formData.travelMethod,
+      destination: {
+        street: formData.street,
+        city: formData.city,
+        state: formData.state,
+        country: formData.country,
+        zipCode: formData.zipCode
+      }
+    }
+    props.handleAddTrip(adjustedFormData)
   }
 
   return (  
@@ -50,6 +64,20 @@ const NewTrip = (props) => {
           placeholder="Country"
           onChange={handleChange}
         />
+        {formData.country === 'United States' && (
+          <>
+            <label htmlFor="state-input">What state?</label>
+            <input 
+              required
+              type="text"
+              name="state"
+              id="state-input"
+              value={formData.state}
+              placeholder="State"
+              onChange={handleChange}
+            />
+          </>
+        )}
         <label htmlFor="city-input">What city are you going to?</label>
         <input 
           required
@@ -75,6 +103,19 @@ const NewTrip = (props) => {
           <option value="bus">Bus</option>
           <option value="other" >Other</option>
         </select>
+        <label htmlFor="departure-datepicker">When do you plan to leave?</label>
+        <DatePicker 
+          selected={formData.departureDate}
+          id="departure-datepicker"
+          onChange={(date) => (setFormData({...formData, departureDate: date}))}
+        />
+        <label htmlFor="departure-datepicker">When do you return?</label>
+        <DatePicker 
+          selected={formData.returnDate}
+          id="departure-datepicker"
+          onChange={(date) => (setFormData({...formData, returnDate: date}))}
+        />
+        <button type="submit">Create Your Trip</button>
       </form>
     </main>
   )

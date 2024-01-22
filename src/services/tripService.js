@@ -35,7 +35,7 @@ async function create(tripFormData) {
       },
       body: JSON.stringify(tripFormData)
     })
-    res.status(201).json()
+    res.json()
   } catch (error) {
     console.log(error)
   }

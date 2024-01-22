@@ -25,7 +25,7 @@ async function show(tripId) {
   }
 }
 
-async function create(tripFormData) {
+async function create(formData) {
   try {
     const res = await fetch(BASE_URL, {
       method: 'POST',
@@ -33,9 +33,9 @@ async function create(tripFormData) {
         'Authorization': `Bearer ${tokenService.getToken()}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(tripFormData)
+      body: JSON.stringify(formData)
     })
-    res.json()
+    return res.json()
   } catch (error) {
     console.log(error)
   }

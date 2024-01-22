@@ -23,8 +23,7 @@ const NewTrip = (props) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value})
   }
 
-  const handleSubmit = evt => {
-    evt.preventDefault()
+  const handleSubmit =  async (evt) => {
     const adjustedFormData = {
       name: formData.name,
       departureDate: formData.departureDate,
@@ -38,6 +37,7 @@ const NewTrip = (props) => {
         zipCode: formData.zipCode
       }
     }
+    evt.preventDefault()
     props.handleAddTrip(adjustedFormData)
   }
 
@@ -50,7 +50,7 @@ const NewTrip = (props) => {
           type="text"
           name="name"
           id="name-input"
-          value={formData.name}
+          value={formData.name || ""}
           placeholder="Name"
           onChange={handleChange}
         />
@@ -60,7 +60,7 @@ const NewTrip = (props) => {
           type="text"
           name="country"
           id="country-input"
-          value={formData.country}
+          value={formData.country || ""}
           placeholder="Country"
           onChange={handleChange}
         />
@@ -72,7 +72,7 @@ const NewTrip = (props) => {
               type="text"
               name="state"
               id="state-input"
-              value={formData.state}
+              value={formData.state || ""}
               placeholder="State"
               onChange={handleChange}
             />
@@ -84,7 +84,7 @@ const NewTrip = (props) => {
           type="text"
           name="city"
           id="city-input"
-          value={formData.city}
+          value={formData.city || ""}
           placeholder="City"
           onChange={handleChange}
         />
@@ -94,7 +94,7 @@ const NewTrip = (props) => {
         <select 
           required
           name="travelMethod" id="travelmethod-select"
-          value={formData.travelMethod}
+          value={formData.travelMethod || ""}
           onChange={handleChange}
         >
           <option value="car">Car</option>

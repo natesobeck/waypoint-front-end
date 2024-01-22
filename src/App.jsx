@@ -38,8 +38,9 @@ function App() {
     setUser(authService.getUser())
   }
 
-  const handleAddTrip = async (tripFormData) => {
-    const newTrip = await tripService.create(tripFormData)
+  const handleAddTrip = async (formData) => {
+    const newTrip = await tripService.create(formData)
+    console.log(newTrip)
     setTrips([newTrip, ...trips])
     navigate('/trips')
   }

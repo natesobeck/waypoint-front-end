@@ -42,7 +42,7 @@ function App() {
     const newTrip = await tripService.create(formData)
     console.log(newTrip)
     setTrips([newTrip, ...trips])
-    navigate('/trips')
+    navigate(`/trips/${newTrip._id}`)
   }
 
   useEffect(() => {

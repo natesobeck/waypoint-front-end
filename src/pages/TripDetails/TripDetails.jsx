@@ -5,6 +5,9 @@ import { useParams } from "react-router-dom"
 // services
 import * as tripService from '../../services/tripService'
 
+// components
+import Itinerary from "../../components/Itinerary/Itinerary"
+
 const TripDetails = () => {
   const { tripId } = useParams()
   const [trip, setTrip] = useState(null)
@@ -19,11 +22,20 @@ const TripDetails = () => {
 
   if (!trip) return (<h1>Loading...</h1>)
 
+  const departureDate = new Date(trip.departureDate)
+
+  const returnDate = new Date(trip.returnDate)
+
+  const duration = (returnDate.getTime() - departureDate.getTime())/(1000 * 60 * 60 * 24)
+
   return (  
     <main>
-      <h1>
-        This is a trip details page
-      </h1>
+      <h1>{trip.name}</h1>
+      <h3>Your details for your trip to {trip.destination.city}, {trip.destination.country}</h3>
+      <h4>You leave on {departureDate.toLocaleDateString()} and return on {returnDate.toLocaleDateString()}</h4>
+      <h4>Duration: {duration.toFixed()} days</h4>
+      <button>Add to your itinerary</button>
+      <Itinerary trip={trip}/>
     </main>
   )
 }

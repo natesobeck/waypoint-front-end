@@ -4,6 +4,10 @@ import ScheduleItem from "../ScheduleItem/ScheduleItem"
 // npm modules
 import { useState } from "react"
 import DatePicker from "react-datepicker"
+import { useNavigate } from "react-router-dom"
+
+// services
+import * as tripService from '../../services/tripService'
 
 // css
 import "react-datepicker/dist/react-datepicker.css"
@@ -21,6 +25,7 @@ const Itinerary = (props) => {
     country: '',
     zipCode: ''
   })
+  const navigate = useNavigate()
 
   const handleChange = evt => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value})
@@ -42,6 +47,8 @@ const Itinerary = (props) => {
       }
     }
     evt.preventDefault()
+    tripService.createScheduleItem(adjustedFormData, props.trip._id)
+    navigate(`/trips/${props.trip._id}`)
   }
 
   return (
@@ -97,7 +104,7 @@ const Itinerary = (props) => {
           type="text"
           name="venue"
           id="venue-input"
-          value={formData.name || ""}
+          value={formData.venue || ""}
           placeholder="Name or brief description of event"
           onChange={handleChange}
         />
@@ -128,13 +135,14 @@ const Itinerary = (props) => {
             onChange={handleChange}
           />
         </div>
+        <button type="submit">Create Schedule Item</button>
       </form>
       <div>
-        {props.trip.itineraries.length 
-          ? props.trip.itineraries.scheduleItems.map(scheduleItem => (
+        {props.trip.schedule.length 
+          ? props.trip.schedule.map(scheduleItem => (
             <ScheduleItem key={scheduleItem._id}/>
           ))
-          : <p>Theres nothing in your itinerary yet!</p>
+          : <p>Theres nothing in your schedule yet!</p>
         }
       </div>
     </>

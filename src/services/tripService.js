@@ -1,5 +1,4 @@
 // services
-import TripCard from '../components/TripCard/TripCard'
 import * as tokenService from './tokenService'
 
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/api/trips`
@@ -42,9 +41,16 @@ async function create(formData) {
   }
 }
 
-async function createScheduleItem(formData) {
+async function createScheduleItem(formData, tripId) {
   try {
-    const res = await fetch(BASE_URL)
+    const res = await fetch(`${BASE_URL}/${tripId}/schedule`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
     return res.json()
   } catch (error) {
     console.log(error)
@@ -54,5 +60,6 @@ async function createScheduleItem(formData) {
 export {
   index,
   show,
-  create
+  create,
+  createScheduleItem
 }

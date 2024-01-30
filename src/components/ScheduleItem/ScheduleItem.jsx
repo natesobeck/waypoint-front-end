@@ -1,6 +1,9 @@
 const ScheduleItem = (props) => {
   return (  
-    <p>{new Date(props.scheduleItem.startTime).toLocaleString()}</p>
+    <>
+      <p>Date: {new Date(props.scheduleItem.startTime).toLocaleDateString()}</p>
+      <p>Time: {new Date(props.scheduleItem.startTime).toLocaleTimeString()}</p>
+    </>
   )
 }
 

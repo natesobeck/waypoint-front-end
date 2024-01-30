@@ -13,6 +13,7 @@ import * as tripService from '../../services/tripService'
 import "react-datepicker/dist/react-datepicker.css"
 
 const Itinerary = (props) => {
+  console.log(props.trip.schedule[0])
   const [formData, setFormData] = useState({
     name: '',
     startTime: new Date(),
@@ -60,7 +61,6 @@ const Itinerary = (props) => {
     setSchedule(sortedSchedule)
     navigate(`/trips/${props.trip._id}`)
   }
-
 
   return (
     <>
@@ -150,10 +150,27 @@ const Itinerary = (props) => {
       </form>
       <div>
         {schedule.length 
-          ? schedule.map(scheduleItem => (
-            <ScheduleItem key={scheduleItem.createdAt} scheduleItem={scheduleItem}/>
+          // ? (
+          //   schedule.map((scheduleItem)=> (
+          //   <ScheduleItem key={scheduleItem.createdAt} scheduleItem={scheduleItem}/>)
+          //   ))
+          
+          ? schedule.map((scheduleItem, i)=> (
+            i === 0 || scheduleItem.startTime.slice(0, 10) !== schedule[i-1].startTime.slice(0, 10)
+            ?
+              <>
+                <h1>{new Date(scheduleItem.startTime).toLocaleDateString(undefined, {
+                  weekday: 'long',
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}</h1>
+                <ScheduleItem key={scheduleItem.createdAt} scheduleItem={scheduleItem}/>
+              </>
+            : 
+              <ScheduleItem key={scheduleItem.createdAt} scheduleItem={scheduleItem}/>
           ))
-          : <p>Theres nothing in your schedule yet!</p>
+          : <p>Theres nothing in your schedule yet! Add something.</p>
         }
       </div>
     </>

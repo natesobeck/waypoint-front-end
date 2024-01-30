@@ -1,6 +1,6 @@
-const ScheduleItem = () => {
+const ScheduleItem = (props) => {
   return (  
-    <p>this is a schedule item</p>
+    <p>{new Date(props.scheduleItem.startTime).toLocaleString()}</p>
   )
 }
 

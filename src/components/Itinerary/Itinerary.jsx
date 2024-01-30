@@ -25,6 +25,12 @@ const Itinerary = (props) => {
     country: '',
     zipCode: ''
   })
+
+  let sortedSchedule = props.trip.schedule.sort((a, b) => {
+    return new Date(a.startTime).valueOf() - new Date(b.startTime).valueOf()
+  })
+
+  const [schedule, setSchedule] = useState([...props.trip.schedule])
   const navigate = useNavigate()
 
   const handleChange = evt => {
@@ -48,8 +54,13 @@ const Itinerary = (props) => {
     }
     evt.preventDefault()
     tripService.createScheduleItem(adjustedFormData, props.trip._id)
+    sortedSchedule = [...schedule, adjustedFormData].sort((a, b) => {
+      return new Date(a.startTime).valueOf() - new Date(b.startTime).valueOf()
+    })
+    setSchedule(sortedSchedule)
     navigate(`/trips/${props.trip._id}`)
   }
+
 
   return (
     <>
@@ -74,15 +85,15 @@ const Itinerary = (props) => {
           dateFormat="Pp"
           value={formData.startTime}
         />
-        <label htmlFor="starttime-datepicker">When does it start?</label>
+        <label htmlFor="endtime-datepicker">When does it end?</label>
         <DatePicker 
-          selected={formData.startTime}
-          id="starttime-datepicker"
-          onChange={(date) => (setFormData({...formData, startTime: date}))}
+          selected={formData.endTime}
+          id="endtime-datepicker"
+          onChange={(date) => (setFormData({...formData, endTime: date}))}
           showTimeSelect
           timeFormat="p"
           dateFormat="Pp"
-          value={formData.startTime}
+          value={formData.endTime}
         />
         <label htmlFor="category-select">What category of activity?</label>
         <select 
@@ -138,9 +149,9 @@ const Itinerary = (props) => {
         <button type="submit">Create Schedule Item</button>
       </form>
       <div>
-        {props.trip.schedule.length 
-          ? props.trip.schedule.map(scheduleItem => (
-            <ScheduleItem key={scheduleItem._id}/>
+        {schedule.length 
+          ? schedule.map(scheduleItem => (
+            <ScheduleItem key={scheduleItem.createdAt} scheduleItem={scheduleItem}/>
           ))
           : <p>Theres nothing in your schedule yet!</p>
         }

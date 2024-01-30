@@ -35,7 +35,7 @@ const TripDetails = () => {
       <h4>You leave on {departureDate.toLocaleDateString()} and return on {returnDate.toLocaleDateString()}</h4>
       <h4>Duration: {duration.toFixed()} days</h4>
       <button>Add to your itinerary</button>
-      <Itinerary trip={trip}/>
+      <Itinerary trip={trip} setTrip={setTrip}/>
     </main>
   )
 }

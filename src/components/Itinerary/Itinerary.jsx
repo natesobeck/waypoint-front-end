@@ -13,7 +13,6 @@ import * as tripService from '../../services/tripService'
 import "react-datepicker/dist/react-datepicker.css"
 
 const Itinerary = (props) => {
-  console.log(props.trip.schedule[0])
   const [formData, setFormData] = useState({
     name: '',
     startTime: new Date(),
@@ -38,11 +37,15 @@ const Itinerary = (props) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value})
   }
 
+  schedule.forEach(item => {
+    console.log(new Date(item.startTime).toISOString())
+  })
+
   const handleSubmit = evt => {
     const adjustedFormData = {
       name: formData.name,
-      startTime: formData.startTime,
-      endTime: formData.endTime,
+      startTime: formData.startTime.toString(),
+      endTime: formData.endTime.toString(),
       category: formData.category,
       venue: formData.venue,
       address: {
@@ -55,6 +58,7 @@ const Itinerary = (props) => {
     }
     evt.preventDefault()
     tripService.createScheduleItem(adjustedFormData, props.trip._id)
+    console.log(adjustedFormData)
     sortedSchedule = [...schedule, adjustedFormData].sort((a, b) => {
       return new Date(a.startTime).valueOf() - new Date(b.startTime).valueOf()
     })
@@ -156,16 +160,16 @@ const Itinerary = (props) => {
           //   ))
           
           ? schedule.map((scheduleItem, i)=> (
-            i === 0 || scheduleItem.startTime.slice(0, 10) !== schedule[i-1].startTime.slice(0, 10)
+            i === 0 || new Date(scheduleItem.startTime).toISOString().slice(0, 10) !== new Date(schedule[i - 1].startTime).toISOString().slice(0, 10)
             ?
               <>
-                <h1>{new Date(scheduleItem.startTime).toLocaleDateString(undefined, {
+                <h1 key={scheduleItem.startTime}>{new Date(scheduleItem.startTime).toLocaleDateString(undefined, {
                   weekday: 'long',
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric',
                 })}</h1>
-                <ScheduleItem key={scheduleItem.createdAt} scheduleItem={scheduleItem}/>
+                <ScheduleItem scheduleItem={scheduleItem} key={scheduleItem.createdAt}/>
               </>
             : 
               <ScheduleItem key={scheduleItem.createdAt} scheduleItem={scheduleItem}/>

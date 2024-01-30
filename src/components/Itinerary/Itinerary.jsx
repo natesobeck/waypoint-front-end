@@ -11,10 +11,15 @@ import "react-datepicker/dist/react-datepicker.css"
 const Itinerary = (props) => {
   const [formData, setFormData] = useState({
     name: '',
-    date: new Date(),
     startTime: new Date(),
     endTime: new Date(),
-    category: 'entertainment'
+    category: 'entertainment',
+    venue: '',
+    street: '',
+    city: '',
+    state: '',
+    country: '',
+    zipCode: ''
   })
 
   const handleChange = evt => {
@@ -22,6 +27,20 @@ const Itinerary = (props) => {
   }
 
   const handleSubmit = evt => {
+    const adjustedFormData = {
+      name: formData.name,
+      startTime: formData.startTime,
+      endTime: formData.endTime,
+      category: formData.category,
+      venue: formData.venue,
+      address: {
+        street: formData.street,
+        city: formData.city,
+        state: formData.state,
+        country: formData.country,
+        zipCode: formData.zipCode
+      }
+    }
     evt.preventDefault()
   }
 
@@ -58,7 +77,7 @@ const Itinerary = (props) => {
           dateFormat="Pp"
           value={formData.startTime}
         />
-        <label htmlFor="category-select">When does it start?</label>
+        <label htmlFor="category-select">What category of activity?</label>
         <select 
           name="category"
           id="category-select"
@@ -72,6 +91,43 @@ const Itinerary = (props) => {
           <option value="transportation">Transportation</option>
           <option value="other">Other</option>
         </select>
+        <label htmlFor="venue-input">What's the place called?</label>
+        <input 
+          required
+          type="text"
+          name="venue"
+          id="venue-input"
+          value={formData.name || ""}
+          placeholder="Name or brief description of event"
+          onChange={handleChange}
+        />
+        <label htmlFor="address-inputs">What's the address?</label>
+        <div id="address-inputs">
+          <input 
+            required
+            type="text"
+            name="street"
+            value={formData.street || ""}
+            placeholder="Street"
+            onChange={handleChange}
+          />
+          <input 
+            required
+            type="text"
+            name="city"
+            value={formData.city || ""}
+            placeholder="City"
+            onChange={handleChange}
+          />
+          <input 
+            required
+            type="text"
+            name="zipCode"
+            value={formData.zipCode || ""}
+            placeholder="Zip Code"
+            onChange={handleChange}
+          />
+        </div>
       </form>
       <div>
         {props.trip.itineraries.length 

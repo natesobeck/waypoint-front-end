@@ -4,10 +4,15 @@
   box-sizing: inherit;
 }
 
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   box-sizing: border-box;
 
-  margin: 0;
   min-height: 100vh;
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -27,8 +32,29 @@ a:visited {
   color: #00d8ff
 }
 
-nav > ul {
+.main-nav {
+  text-align: center;
+}
+
+.main-nav > ul {
   margin: 0;
   padding: 16px 32px;
+  list-style: none;
+}
+
+.main-nav li {
+  display: inline-block;
+}
+
+.main-nav a {
+  padding: .5em;
+  text-decoration: none;
+  color: black;
+}
+
+.main-nav a:hover {
+  background-color: rgba(255, 255, 255, .3);
+  cursor: pointer;
+}
 }
 

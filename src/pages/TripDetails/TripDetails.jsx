@@ -31,7 +31,7 @@ const TripDetails = () => {
   return (  
     <main>
       <h1>{trip.name}</h1>
-      <h3>Your details for your trip to {trip.destination.city}, {trip.destination.country}</h3>
+      <h3>Your details for your trip to {trip.destination.city}, {trip.destination.state.length ? `${trip.destination.state}, ` : '' }{trip.destination.country}</h3>
       <h4>You leave on {departureDate.toLocaleDateString()} and return on {returnDate.toLocaleDateString()}</h4>
       <h4>Duration: {(duration + 1).toFixed()} {duration === 0 ? 'day' : 'days'}</h4>
       <Itinerary trip={trip} setTrip={setTrip}/>

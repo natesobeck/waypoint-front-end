@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 const NavBar = ({ user, handleLogout }) => {
   return (
-    <>
+    <div className="nav-container">
       <nav className="main-nav">
         {user ?
           <ul>
@@ -23,7 +23,7 @@ const NavBar = ({ user, handleLogout }) => {
         }
       </nav>
       <h1 className="main-title">Waypoint</h1>
-    </>
+    </div>
   )
 }
 

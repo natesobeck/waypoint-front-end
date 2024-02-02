@@ -1,0 +1,31 @@
+.footer {
+  border-top: 1px solid rgba(0, 0, 0, .1);
+  text-align: center;
+  font-size: 1.15em;
+  font-weight: light;
+  background-image: url('/images/nav-maps.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.footer > ul {
+  margin: 0;
+  padding: 16px 32px;
+  list-style: none;
+}
+
+.footer li {
+  display: inline-block;
+  padding: 0 5%;
+}
+
+.footer a {
+  padding: .5em;
+  text-decoration: none;
+  color: black;
+}
+
+.footer a:hover {
+  background-color: rgba(0, 0, 0, .1);
+  cursor: pointer;
+}

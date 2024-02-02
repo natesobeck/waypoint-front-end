@@ -11,6 +11,7 @@ import ChangePassword from './pages/ChangePassword/ChangePassword'
 import TripList from './pages/TripList/TripList'
 import TripDetails from './pages/TripDetails/TripDetails'
 import NewTrip from './pages/NewTrip/NewTrip'
+import Footer from './components/Footer/Footer'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -113,6 +114,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer />
     </>
   )
 }

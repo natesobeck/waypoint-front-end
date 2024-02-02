@@ -79,59 +79,51 @@ const Signup = ({ handleAuthEvt }) => {
 
   return (
     <main className={styles.container}>
-      <h1>Sign Up</h1>
-      <p className={styles.message}>{message}</p>
-      <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
-        <label className={styles.label}>
-          Name
-          <input type="text" value={name} name="name" onChange={handleChange} />
-        </label>
-        <label className={styles.label}>
-          Email
-          <input
-            type="text"
-            value={email}
-            name="email"
-            onChange={handleChange}
-          />
-        </label>
-        <label className={styles.label}>
-          Password
-          <input
-            type="password"
-            value={password}
-            name="password"
-            onChange={handleChange}
-          />
-        </label>
-        <label className={styles.label}>
-          Confirm Password
-          <input
-            type="password"
-            value={passwordConf}
-            name="passwordConf"
-            onChange={handleChange}
-          />
-        </label>
-        <label className={styles.label}>
-          Upload Photo
-          <input 
-            type="file" 
-            name="photo" 
-            onChange={handleChangePhoto}
-            ref={imgInputRef}
-          />
-        </label>
-        <div>
-          <Link to="/">Cancel</Link>
-          <button
-            className={styles.button}
-            disabled={ isFormInvalid() || isSubmitted }
-          >
-            {!isSubmitted ? 'Sign Up' : '🚀 Sending...'}
-          </button>
-        </div>
-      </form>
+      <div className={styles.subcontainer}>
+        <h1 className="sub-title">Sign Up</h1>
+        <p className={styles.message}>{message}</p>
+        <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
+            <input type="text" value={name} name="name" onChange={handleChange} placeholder="Name"/>
+            <input
+              type="text"
+              value={email}
+              name="email"
+              onChange={handleChange}
+              placeholder="Email"
+            />
+            <input
+              type="password"
+              value={password}
+              name="password"
+              onChange={handleChange}
+              placeholder="Password"
+            />
+            <input
+              type="password"
+              value={passwordConf}
+              name="passwordConf"
+              onChange={handleChange}
+              placeholder="Confirm Password"
+            />
+            <label>
+              <input 
+                type="file" 
+                name="photo" 
+                onChange={handleChangePhoto}
+                ref={imgInputRef}
+              />
+            </label>
+          <div className={styles["form-links"]}>
+            <button
+              className={styles.button}
+              disabled={ isFormInvalid() || isSubmitted }
+            >
+              {!isSubmitted ? 'Sign Up' : '🚀 Sending...'}
+            </button>
+            <Link to="/">Cancel</Link>
+          </div>
+        </form>
+      </div>
     </main>
   )
 }

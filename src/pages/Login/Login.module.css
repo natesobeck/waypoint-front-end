@@ -43,7 +43,11 @@ input[type="file"]::file-selector-button:focus {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 450px;
+  width: 400px;
+  height: 450px;
+  background-color: rgba(255, 255, 255, .8);
+  filter: drop-shadow(5px 5px rgba(0, 0, 0, .1));
+  border-radius: 10px;
 }
 
 .message {

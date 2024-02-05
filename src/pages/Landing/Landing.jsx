@@ -4,21 +4,32 @@ import { Link } from 'react-router-dom'
 // css
 import styles from './Landing.module.css'
 
+// pages
+import LoginPage from '../Login/Login'
+
 const Landing = ({ user }) => {
   return (
     <main className={styles.container}>
       <section className={styles['welcome-section']}>
         <div className={styles['welcome-section-container']}>
-          <h1>Welcome to Waypoint, {user ? user.name[0].toUpperCase() + user.name.slice(1).toLowerCase() : 'friend'}</h1>
-          {!user && <Link to='/auth/signup'>Get Started Now!</Link>}
-          {user && <Link to='/trips/new'>Add a Trip</Link>}
+          {/* <h1>Welcome, {user ? user.name[0].toUpperCase() + user.name.slice(1).toLowerCase() : 'Traveler'}</h1> */}
+          <div className={styles['headers-container']}>
+            <h1 className={styles["landing-header"]}>Where are you off to next?</h1>
+            <h3 className={styles["landing-subheader"]}>We'll make sure you're good to go.</h3>
+          </div>
+          {/* <p>Step 1: Create a Trip</p>
+          <p>Step 2: Create a Schedule</p>
+          <p>Step 3: Add Expenses</p>
+          <p>Step 4: Profit</p> */}
+          <div className={styles["login-container"]}>
+            {!user && (
+              <div className={styles['login-subcontainer']}>
+                <LoginPage />
+              </div>
+            )}
+            {user && <Link to='/trips/new'>Add a Trip</Link>}
+          </div>
         </div>
-      </section>
-      <section className={styles['features-section']}>
-        <h1>This will list the freatures of the app.</h1>
-      </section>
-      <section className={styles['about-section']}>
-        <h1>This will be the about section</h1>
       </section>
     </main>
   )

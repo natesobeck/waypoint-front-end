@@ -1,21 +1,44 @@
 .container {
   display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.welcome-section, .features-section, .about-section {
-  border: 5px solid white;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
+  align-items:center;
   justify-content: center;
 }
 
 .welcome-section-container {
+  padding-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.welcome-section {
+  width: 100%;
+}
+
+.landing-header {
+  font-size: 3em;
+  font-family: 'Pacifico', cursive;
+  margin-bottom: 20px;
+}
+
+.landing-subheader {
+  font-size: 2em;
+  margin-bottom: 50px;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  background-image: url(/images/van-desert.jpg);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+}
+
+.headers-container {
+  margin-bottom: 80px;
+  margin-top: 50px;
+  border-top: 1px solid rgba(0, 0, 0, .2);
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
 }

@@ -7,7 +7,8 @@ import styles from './Landing.module.css'
 // pages
 import LoginPage from '../Login/Login'
 
-const Landing = ({ user }) => {
+const Landing = (props) => {
+
   return (
     <main className={styles.container}>
       <section className={styles['welcome-section']}>
@@ -22,12 +23,12 @@ const Landing = ({ user }) => {
           <p>Step 3: Add Expenses</p>
           <p>Step 4: Profit</p> */}
           <div className={styles["login-container"]}>
-            {!user && (
+            {!props.user && (
               <div className={styles['login-subcontainer']}>
-                <LoginPage />
+                <LoginPage handleAuthEvt={props.handleAuthEvt} />
               </div>
             )}
-            {user && <Link to='/trips/new'>Add a Trip</Link>}
+            {props.user && <Link to='/trips/new' className={styles['add-trip-btn-big']}>Add a Trip</Link>}
           </div>
         </div>
       </section>

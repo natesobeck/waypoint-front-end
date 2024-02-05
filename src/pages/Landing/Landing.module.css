@@ -32,10 +32,12 @@
 .login-container {
   display: flex;
   justify-content: center;
+  align-items: center;
   background-image: url(/images/van-desert.jpg);
   background-size: cover;
   background-position: center;
   width: 100%;
+  min-height: 500px;
 }
 
 .headers-container {
@@ -43,6 +45,10 @@
   margin-top: 50px;
   border-top: 1px solid rgba(0, 0, 0, .2);
   border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+.add-trip-btn-big {
+
 }
 
 @keyframes fade-in {

@@ -58,7 +58,6 @@ function App() {
     <>
       <NavBar user={user} handleLogout={handleLogout} />
       <Routes>
-        <Route path="/" element={<Landing user={user} />} />
         <Route
           path="/profiles"
           element={
@@ -110,7 +109,7 @@ function App() {
         <Route
           path="/"
           element={
-            <Landing />
+            <Landing handleAuthEvt={handleAuthEvt} user={user}/>
           }
         />
       </Routes>

@@ -44,6 +44,7 @@ const NewTrip = (props) => {
   return (  
     <main>
       <form onSubmit={handleSubmit} className={styles.container}>
+        <h3 className={styles["form-header"]}>Let's get you going right away,</h3>
         <div className={styles['input-container']}>
           <label htmlFor="name-input">Name your Trip:</label>
           <input 

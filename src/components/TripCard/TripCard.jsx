@@ -1,3 +1,6 @@
+// css
+import styles from './TripCard.module.css'
+
 // npm modules
 import { Link } from 'react-router-dom'
 
@@ -7,11 +10,15 @@ const TripCard = ({ trip }) => {
   const returnDate = new Date(trip.returnDate).toLocaleDateString()
 
   return (  
-    <Link to={`/trips/${trip._id}`}>
-      <h1>{trip.name}</h1>
-      <h3>Destination: {trip.destination.city}, {trip.destination.country}</h3>
-      <p>Depart: {departureDate}</p>
-      <p>Return: {returnDate}</p>
+    <Link to={`/trips/${trip._id}`} className={styles.link}>
+      <div className={styles['card-container']}>
+        <div className={styles['trip-info']}>
+          <h1 className={styles['card-header']}>{trip.name}</h1>
+          <h3 className={styles.destination}>To {trip.destination.city}, {trip.destination.state ? `${trip.destination.state}, ` : ''}{trip.destination.country}</h3>
+          <p>You leave on  {departureDate} and return on {returnDate}</p>
+        </div>
+        <div className={styles.image}></div>
+      </div>
     </Link>
   )
 }

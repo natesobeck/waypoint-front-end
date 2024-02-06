@@ -16,7 +16,7 @@ const Landing = (props) => {
           {/* <h1>Welcome, {user ? user.name[0].toUpperCase() + user.name.slice(1).toLowerCase() : 'Traveler'}</h1> */}
           <div className={styles['headers-container']}>
             <h1 className={styles["landing-header"]}>Where are you off to next?</h1>
-            <h3 className={styles["landing-subheader"]}>We'll make sure you're good to go.</h3>
+            <h3 className={styles["landing-subheader"]}>We'll help make sure you're good to go.</h3>
           </div>
           {/* <p>Step 1: Create a Trip</p>
           <p>Step 2: Create a Schedule</p>

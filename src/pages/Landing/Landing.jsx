@@ -28,7 +28,7 @@ const Landing = (props) => {
                 <LoginPage handleAuthEvt={props.handleAuthEvt} />
               </div>
             )}
-            {props.user && <Link to='/trips/new' className={styles['add-trip-btn-big']}>Add a Trip</Link>}
+            {props.user && <Link to='/trips/new' className={styles['add-trip-btn-big']}><span className={styles.underline}>Add a Trip</span></Link>}
           </div>
         </div>
       </section>

@@ -19,7 +19,7 @@ const TripCard = ({ trip, handleDeleteTrip }) => {
         </div>
         <div className={styles['btn-container']}>
           <button className={styles.btn} onClick={() => handleDeleteTrip(trip._id)}>Delete this trip</button>
-          <button className={styles.btn}>Edit this trip's details</button>
+          <button className={styles.btn}>Edit this trip</button>
         </div>
         <div className={styles.image}></div>
       </div>

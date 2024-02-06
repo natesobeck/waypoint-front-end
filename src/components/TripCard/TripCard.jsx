@@ -15,7 +15,11 @@ const TripCard = ({ trip }) => {
         <div className={styles['trip-info']}>
           <h1 className={styles['card-header']}>{trip.name}</h1>
           <h3 className={styles.destination}>To {trip.destination.city}, {trip.destination.state ? `${trip.destination.state}, ` : ''}{trip.destination.country}</h3>
-          <p>You leave on  {departureDate} and return on {returnDate}</p>
+          <p className={styles['travel-info']}>You leave on  {departureDate} and return on {returnDate}</p>
+        </div>
+        <div className={styles['btn-container']}>
+          <button className={styles.btn}>Delete this trip</button>
+          <button className={styles.btn}>Edit this trip's details</button>
         </div>
         <div className={styles.image}></div>
       </div>

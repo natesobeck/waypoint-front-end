@@ -4,4 +4,22 @@
   justify-content: center;
   gap: 30px;
   width: 100%;
+  text-align: center;
+  animation: fade-in 1s ease-in-out;
+}
+
+.subtitle {
+  color: #1d80d2;
+  animation: fade-in 1s ease-in-out;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

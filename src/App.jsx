@@ -41,9 +41,15 @@ function App() {
 
   const handleAddTrip = async (formData) => {
     const newTrip = await tripService.create(formData)
-    console.log(newTrip)
     setTrips([newTrip, ...trips])
     navigate(`/trips/${newTrip._id}`)
+  }
+
+  const handleDeleteTrip = async (tripId) => {
+    const deletedTrip = await tripService.delete(tripId)
+    const filteredTrips = trips.filter(trip => trip._id !== deletedTrip._id)
+    setTrips(filteredTrips)
+    navigate('/trips')
   }
 
   useEffect(() => {
@@ -86,7 +92,7 @@ function App() {
           path="/trips"
           element={
             <ProtectedRoute user={user}>
-              <TripList trips={trips}/>
+              <TripList trips={trips} handleDeleteTrip={handleDeleteTrip} />
             </ProtectedRoute>
           }
         />

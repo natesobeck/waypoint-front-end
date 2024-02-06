@@ -4,7 +4,7 @@ import styles from './TripCard.module.css'
 // npm modules
 import { Link } from 'react-router-dom'
 
-const TripCard = ({ trip }) => {
+const TripCard = ({ trip, handleDeleteTrip }) => {
   const departureDate = new Date(trip.departureDate).toLocaleDateString()
 
   const returnDate = new Date(trip.returnDate).toLocaleDateString()
@@ -18,7 +18,7 @@ const TripCard = ({ trip }) => {
           <p className={styles['travel-info']}>You leave on  {departureDate} and return on {returnDate}</p>
         </div>
         <div className={styles['btn-container']}>
-          <button className={styles.btn}>Delete this trip</button>
+          <button className={styles.btn} onClick={() => handleDeleteTrip(trip._id)}>Delete this trip</button>
           <button className={styles.btn}>Edit this trip's details</button>
         </div>
         <div className={styles.image}></div>

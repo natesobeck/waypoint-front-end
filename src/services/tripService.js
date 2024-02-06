@@ -41,6 +41,20 @@ async function create(formData) {
   }
 }
 
+async function deleteTrip(tripId) {
+  try {
+    const res = await fetch(`${BASE_URL}/${tripId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`
+      }
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 async function createScheduleItem(formData, tripId) {
   try {
     const res = await fetch(`${BASE_URL}/${tripId}/schedule`, {
@@ -61,5 +75,6 @@ export {
   index,
   show,
   create,
+  deleteTrip as delete,
   createScheduleItem
 }

@@ -23,9 +23,9 @@
 }
 
 .landing-subheader {
+  opacity: 0;
   font-size: 2em;
   margin-bottom: 50px;
-  color: white;
   animation: fade-in 500ms ease-in-out 1s forwards;
 }
 
@@ -49,11 +49,13 @@
 
 .add-trip-btn-big {
   text-decoration: none;
+  opacity: 0;
   color: white;
   background-image: linear-gradient(90deg, rgba(100,94,201, .9) 0%, rgba(98,146,232,.9) 50%, rgba(100,149,237,.9) 100%);
   padding: 40px;
   font-size: 32px;
   transition: background-color 250ms ease-in-out;
+  animation: fade-in 500ms ease-in-out 2s forwards;
 }
 
 .add-trip-btn-big:hover {
@@ -63,11 +65,11 @@
 
 @keyframes fade-in {
   0% {
-    color: white;
-    transform: translateX(100%)
+    opacity: 0;
+    transform: translateX(100%);
   }
   100% {
-    color: black;
-    transform: translateX(0)
+    opacity: 1;
+    transform: translateX(0);
   }
 }

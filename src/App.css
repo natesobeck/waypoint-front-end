@@ -84,3 +84,7 @@ main {
   font-size: 2em;
   margin: 0;
 }
+
+.active {
+  background: gray;
+}

@@ -16,8 +16,15 @@ const TripDetails = () => {
   const [trip, setTrip] = useState(null)
   const [showSchedule, setShowSchedule] = useState(false)
 
-  const handleShowSchedule = () => {
+  const handleShowSchedule = (evt) => {
+    handleActiveSelection(evt)
     setShowSchedule(!showSchedule)
+  }
+
+  const handleActiveSelection = (evt) => {
+    const active = document.querySelector('.active')
+    active.classList.remove('active')
+    evt.target.classList.add('active')
   }
 
   useEffect(() => {
@@ -42,9 +49,9 @@ const TripDetails = () => {
       <h3>Your details for your trip to {trip.destination.city}, {trip.destination.state.length ? `${trip.destination.state}, ` : '' }{trip.destination.country}</h3>
       <h4>You leave on {departureDate.toLocaleDateString()} and return on {returnDate.toLocaleDateString()} ({(duration + 1).toFixed()} {duration === 0 ? 'day' : 'days'})</h4>
       <div className={styles['btn-container']}>
-        <button onClick={handleShowSchedule} className={`${styles.btn} ${styles['schedule-btn']}`}>My Schedule</button>
-        <button  className={`${styles.btn} ${styles['expenses-btn']}`}>My Expenses</button>
-        <button  className={`${styles.btn} ${styles['packing-list-btn']}`}>My Packing List</button>
+        <button onClick={handleShowSchedule} className={`${styles.btn} ${styles['schedule-btn']} ${styles['main-btn']}`}>My Schedule</button>
+        <button  className={`${styles.btn} ${styles['expenses-btn']} ${styles['main-btn']}`}>My Expenses</button>
+        <button  className={`${styles.btn} ${styles['packing-list-btn']} ${styles['main-btn']}`}>My Packing List</button>
       </div>
       {showSchedule && <Itinerary trip={trip} setTrip={setTrip}/>}
     </main>

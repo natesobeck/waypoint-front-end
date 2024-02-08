@@ -40,10 +40,6 @@ const Itinerary = (props) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value})
   }
 
-  schedule.forEach(item => {
-    console.log(new Date(item.startTime).toISOString())
-  })
-
   const handleSubmit = evt => {
     const adjustedFormData = {
       name: formData.name,

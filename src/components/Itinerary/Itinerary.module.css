@@ -1,8 +1,74 @@
 .form {
-  padding-top: 20px;
-  border: 1px solid black;
+  margin-top: 30px;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  font-size: 1em;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, .8);
+  filter: drop-shadow(5px 5px rgba(0, 0, 0, .1));
+  border-radius: 10px;
+  color: rgba(0, 0, 0, .8)
 }
 
 .form-label-input-container {
+  padding: 10px 0px;
+  display: flex;
+  justify-content:space-between;
+}
 
+.address-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-label-input-container label {
+  font-weight: 500;
+}
+
+.create-schedule-btn {
+  border-radius: 0;
+  border: none;
+  background-color: #2196f3;
+  padding: 10px 0px;
+  font-size: 1em;
+  border-radius: 3px;
+  color: white;
+  font-weight: 500;
+}
+
+.create-schedule-btn:hover, .add-schedule-item-btn:hover {
+  cursor: pointer;
+  background-color: #1d80d2;
+}
+
+.form-label-input-container select, .form-label-input-container input {
+  width: 280px;
+}
+
+.schedule-day {
+  background-image: linear-gradient(90deg, rgba(33,150,243,0.2) 0%, rgba(33,150,243,0.1) 50%, rgba(33,150,243,0) 100%);
+  padding: 10px;
+  font-size: 1.2em;
+}
+
+.add-schedule-item-btn {
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  background-color: #2196f3;
+  color: white;
+  font-size: 1.2em;
+}
+
+.icon {
+  font-size: 1.5em;
+  margin-left: 5px;
+}
+
+.btn-text-icon-container {
+  display: flex;
+  align-items: center;
 }

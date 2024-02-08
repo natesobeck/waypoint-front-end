@@ -11,6 +11,7 @@ import * as tripService from '../../services/tripService'
 
 // css
 import "react-datepicker/dist/react-datepicker.css"
+import styles from './Itinerary.module.css'
 
 const Itinerary = (props) => {
   const [formData, setFormData] = useState({
@@ -68,62 +69,72 @@ const Itinerary = (props) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name-input">What are you doing?</label>
-        <input 
-          required
-          type="text"
-          name="name"
-          id="name-input"
-          value={formData.name || ""}
-          placeholder="Name or brief description of event"
-          onChange={handleChange}
-        />
-        <label htmlFor="starttime-datepicker">When does it start?</label>
-        <DatePicker 
-          selected={formData.startTime}
-          id="starttime-datepicker"
-          onChange={(date) => (setFormData({...formData, startTime: date}))}
-          showTimeSelect
-          timeFormat="p"
-          dateFormat="Pp"
-          value={formData.startTime}
-        />
-        <label htmlFor="endtime-datepicker">When does it end?</label>
-        <DatePicker 
-          selected={formData.endTime}
-          id="endtime-datepicker"
-          onChange={(date) => (setFormData({...formData, endTime: date}))}
-          showTimeSelect
-          timeFormat="p"
-          dateFormat="Pp"
-          value={formData.endTime}
-        />
-        <label htmlFor="category-select">What category of activity?</label>
-        <select 
-          name="category"
-          id="category-select"
-          value={formData.category}
-          placeholder="Category of Event"
-          onChange={handleChange}
-        >
-          <option value="entertainment">Entertainment</option>
-          <option value="food">Food</option>
-          <option value="fitness">Fitness</option>
-          <option value="transportation">Transportation</option>
-          <option value="other">Other</option>
-        </select>
-        <label htmlFor="venue-input">What's the place called?</label>
-        <input 
-          required
-          type="text"
-          name="venue"
-          id="venue-input"
-          value={formData.venue || ""}
-          placeholder="Name or brief description of event"
-          onChange={handleChange}
-        />
-        <label htmlFor="address-inputs">What's the address?</label>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles['form-label-input-container']}>
+          <label htmlFor="name-input">What are you doing?</label>
+          <input 
+            required
+            type="text"
+            name="name"
+            id="name-input"
+            value={formData.name || ""}
+            placeholder="Name or brief description of event"
+            onChange={handleChange}
+          />
+        </div>
+        <div className={styles['form-label-input-container']}>
+          <label htmlFor="starttime-datepicker">Start Time:</label>
+          <DatePicker 
+            selected={formData.startTime}
+            id="starttime-datepicker"
+            onChange={(date) => (setFormData({...formData, startTime: date}))}
+            showTimeSelect
+            timeFormat="p"
+            dateFormat="Pp"
+            value={formData.startTime}
+          />
+        </div>
+        <div className={styles['form-label-input-container']}>
+          <label htmlFor="endtime-datepicker">End Time:</label>
+          <DatePicker 
+            selected={formData.endTime}
+            id="endtime-datepicker"
+            onChange={(date) => (setFormData({...formData, endTime: date}))}
+            showTimeSelect
+            timeFormat="p"
+            dateFormat="Pp"
+            value={formData.endTime}
+          />
+        </div>
+        <div className={styles['form-label-input-container']}>
+          <label htmlFor="category-select">Category: </label>
+          <select 
+            name="category"
+            id="category-select"
+            value={formData.category}
+            placeholder="Category of Event"
+            onChange={handleChange}
+          >
+            <option value="entertainment">Entertainment</option>
+            <option value="food">Food</option>
+            <option value="fitness">Fitness</option>
+            <option value="transportation">Transportation</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div className={styles['form-label-input-container']}>
+          <label htmlFor="venue-input">Location: </label>
+          <input 
+            required
+            type="text"
+            name="venue"
+            id="venue-input"
+            value={formData.venue || ""}
+            placeholder="Name of venue"
+            onChange={handleChange}
+          />
+        </div>
+        <label htmlFor="address-inputs">Address: </label>
         <div id="address-inputs">
           <input 
             required
@@ -153,12 +164,7 @@ const Itinerary = (props) => {
         <button type="submit">Create Schedule Item</button>
       </form>
       <div>
-        {schedule.length 
-          // ? (
-          //   schedule.map((scheduleItem)=> (
-          //   <ScheduleItem key={scheduleItem.createdAt} scheduleItem={scheduleItem}/>)
-          //   ))
-          
+        {schedule.length       
           ? schedule.map((scheduleItem, i)=> (
             i === 0 || new Date(scheduleItem.startTime).toISOString().slice(0, 10) !== new Date(schedule[i - 1].startTime).toISOString().slice(0, 10)
             ?

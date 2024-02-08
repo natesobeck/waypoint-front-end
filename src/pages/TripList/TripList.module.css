@@ -11,6 +11,7 @@
 .subtitle {
   color: #1d80d2;
   animation: fade-in 1s ease-in-out;
+  font-weight: normal;
 }
 
 @keyframes fade-in {

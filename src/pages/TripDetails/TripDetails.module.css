@@ -15,16 +15,14 @@
   border: none;
 }
 
-.schedule-btn {
+.schedule-btn, .expenses-btn, .packing-list-btn {
   background-image: linear-gradient(90deg, rgba(104,94,201,1) 0%, rgba(182,98,232,1) 50%, rgba(216,100,237,1) 100%);
 }
 
-.expenses-btn {
-  background-image: linear-gradient(90deg, rgba(104,94,201,1) 0%, rgba(182,98,232,1) 50%, rgba(216,100,237,1) 100%);
-}
-
-.packing-list-btn {
-  background-image: linear-gradient(90deg, rgba(104,94,201,1) 0%, rgba(182,98,232,1) 50%, rgba(216,100,237,1) 100%);
+.schedule-btn:hover, .expenses-btn:hover, .packing-list-btn:hover {
+  background-color: rgba(0, 0, 0, .2);
+  background-blend-mode: color;
+  transition: none;
 }
 
 .main-btn {

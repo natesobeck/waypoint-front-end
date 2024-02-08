@@ -24,9 +24,9 @@ const TripDetails = () => {
   const handleActiveSelection = (evt) => {
     const buttons = document.querySelectorAll(`.${styles['main-btn']}`)
     buttons.forEach(button => {
-      if (button === evt.target) {
+      if (button === evt.target && !button.classList.contains(`${styles.active}`)) {
         button.classList.add(`${styles.active}`)
-      } else if (button.classList.contains(`${styles.active}`) && button !== evt.target) {
+      } else if (button.classList.contains(`${styles.active}`)) {
         button.classList.remove(`${styles.active}`)
       }
     })

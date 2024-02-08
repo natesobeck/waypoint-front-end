@@ -65,6 +65,8 @@ main {
   text-decoration: none;
   color: black;
   transition: background-color 250ms ease-in-out;
+  height: 100%;
+  width: 100%;
 }
 
 .main-nav a:hover {
@@ -85,6 +87,6 @@ main {
   margin: 0;
 }
 
-.active {
-  background: gray;
+.nav-active {
+  background-color: rgba(0, 0, 0, .1)
 }

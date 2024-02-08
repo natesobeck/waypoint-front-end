@@ -1,5 +1,21 @@
 // npm modules
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
+// css
+import styles from './NavBar.module.css'
+
+const handleActiveSelection = (evt) => {
+  const liEls = document.querySelectorAll(`.${styles.item}`)
+  console.log(evt.target)
+  liEls.forEach(li => {
+    if (li === evt.target || li.children === evt.target) {
+      console.log(li)
+      li.classList.add(`${styles['active']}`)
+    } else if (li.classList.contains(`${styles['active']}`) && li !== evt.target) {
+      li.classList.remove(`${styles['active']}`)
+    }
+  })
+}
 
 const NavBar = ({ user, handleLogout }) => {
   return (
@@ -8,16 +24,16 @@ const NavBar = ({ user, handleLogout }) => {
         {user ?
           <ul>
             <li>Welcome, {user.name}</li>
-            <li><NavLink to="/">HOME</NavLink></li>
-            <li><NavLink to="/trips">ALL MY TRIPS</NavLink></li>
-            <li><NavLink to="/trips/new">ADD A TRIP</NavLink></li>
-            <li><NavLink to="" onClick={handleLogout}>LOG OUT</NavLink></li>
+            <li><Link className={styles.item} onClick={handleActiveSelection} to="/">HOME</Link></li>
+            <li><Link className={styles.item} onClick={handleActiveSelection} to="/trips">ALL MY TRIPS</Link></li>
+            <li><Link className={styles.item} onClick={handleActiveSelection} to="/trips/new">ADD A TRIP</Link></li>
+            <li><Link to="" onClick={handleLogout}>LOG OUT</Link></li>
           </ul>
         :
           <ul>
-            <li><NavLink to="/">HOME</NavLink></li>
-            <li><NavLink to="/auth/login">LOG IN</NavLink></li>
-            <li><NavLink to="/auth/signup">SIGN UP</NavLink></li>
+            <li><Link onClick={handleActiveSelection} className={styles.item} to="/">HOME</Link></li>
+            <li><Link onClick={handleActiveSelection} className={styles.item} to="/auth/login">LOG IN</Link></li>
+            <li><Link onClick={handleActiveSelection} className={styles.item} to="/auth/signup">SIGN UP</Link></li>
           </ul>
         }
       </nav>

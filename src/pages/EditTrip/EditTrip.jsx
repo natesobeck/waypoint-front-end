@@ -5,7 +5,6 @@ import DatePicker from "react-datepicker"
 
 // css
 import "react-datepicker/dist/react-datepicker.css"
-import styles from './NewTrip.module.css'
 
 const EditTrip = (props) => {
   const { state } = useLocation()

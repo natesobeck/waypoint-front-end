@@ -22,9 +22,14 @@ const TripDetails = () => {
   }
 
   const handleActiveSelection = (evt) => {
-    const active = document.querySelector('.active')
-    active.classList.remove('active')
-    evt.target.classList.add('active')
+    const buttons = document.querySelectorAll(`.${styles['main-btn']}`)
+    buttons.forEach(button => {
+      if (button === evt.target) {
+        button.classList.add(`${styles.active}`)
+      } else if (button.classList.contains(`${styles.active}`) && button !== evt.target) {
+        button.classList.remove(`${styles.active}`)
+      }
+    })
   }
 
   useEffect(() => {
@@ -50,8 +55,8 @@ const TripDetails = () => {
       <h4>You leave on {departureDate.toLocaleDateString()} and return on {returnDate.toLocaleDateString()} ({(duration + 1).toFixed()} {duration === 0 ? 'day' : 'days'})</h4>
       <div className={styles['btn-container']}>
         <button onClick={handleShowSchedule} className={`${styles.btn} ${styles['schedule-btn']} ${styles['main-btn']}`}>My Schedule</button>
-        <button  className={`${styles.btn} ${styles['expenses-btn']} ${styles['main-btn']}`}>My Expenses</button>
-        <button  className={`${styles.btn} ${styles['packing-list-btn']} ${styles['main-btn']}`}>My Packing List</button>
+        <button  className={`${styles.btn} ${styles['expenses-btn']} ${styles['main-btn']}`} onClick={handleActiveSelection}>My Expenses</button>
+        <button  className={`${styles.btn} ${styles['packing-list-btn']} ${styles['main-btn']}`} onClick={handleActiveSelection}>My Packing List</button>
       </div>
       {showSchedule && <Itinerary trip={trip} setTrip={setTrip}/>}
     </main>

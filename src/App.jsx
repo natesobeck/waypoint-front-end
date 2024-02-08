@@ -12,6 +12,7 @@ import TripList from './pages/TripList/TripList'
 import TripDetails from './pages/TripDetails/TripDetails'
 import NewTrip from './pages/NewTrip/NewTrip'
 import Footer from './components/Footer/Footer'
+import EditTrip from './pages/EditTrip/EditTrip'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -109,6 +110,14 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <NewTrip handleAddTrip={handleAddTrip} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/trips/:tripId/edit"
+          element={
+            <ProtectedRoute user={user}>
+              <EditTrip handleAddTrip={handleAddTrip} />
             </ProtectedRoute>
           }
         />

@@ -23,6 +23,7 @@
   background-color: rgba(0, 0, 0, .2);
   background-blend-mode: color;
   transition: none;
+  cursor: pointer;
 }
 
 .main-btn {

@@ -5,32 +5,21 @@ import DatePicker from "react-datepicker"
 
 // css
 import "react-datepicker/dist/react-datepicker.css"
+import styles from './EditTrip.module.css'
 
 const EditTrip = (props) => {
   const { state } = useLocation()
 
-  const [formData, setFormData] = useState(state)
+  console.log(state)
+
+  const [formData, setFormData] = useState({
+  })
 
   const handleChange = evt => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value})
   }
 
   const handleSubmit =  async (evt) => {
-    const adjustedFormData = {
-      name: formData.name,
-      departureDate: formData.departureDate,
-      returnDate: formData.returnDate,
-      travelMethod: formData.travelMethod,
-      destination: {
-        street: formData.street,
-        city: formData.city,
-        state: formData.state,
-        country: formData.country,
-        zipCode: formData.zipCode
-      }
-    }
-    evt.preventDefault()
-    props.handleAddTrip(adjustedFormData)
   }
 
   return (  

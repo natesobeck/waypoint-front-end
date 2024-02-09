@@ -53,6 +53,15 @@ function App() {
     navigate('/trips')
   }
 
+  const handleUpdateTrip = async (updateFormData) => {
+    const updatedTrip = await tripService.update(updateFormData)
+    const updatedTrips = trips.map(trip => (
+      trip._id === updateFormData._id ? updatedTrip : trip
+    ))
+    setTrips(updatedTrips)
+    navigate('/trips')
+  }
+
   useEffect(() => {
     const fetchAllTrips = async () => {
       const tripsData = await tripService.index()
@@ -117,7 +126,7 @@ function App() {
           path="/trips/:tripId/edit"
           element={
             <ProtectedRoute user={user}>
-              <EditTrip handleAddTrip={handleAddTrip} />
+              <EditTrip handleUpdateTrip={handleUpdateTrip} />
             </ProtectedRoute>
           }
         />

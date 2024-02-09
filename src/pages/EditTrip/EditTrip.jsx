@@ -10,9 +10,18 @@ import styles from './EditTrip.module.css'
 const EditTrip = (props) => {
   const { state } = useLocation()
 
-  console.log(state)
-
+  
   const [formData, setFormData] = useState({
+    name: state.name,
+    travelMethod: state.travelMethod,
+    departureDate: state.departureDate,
+    returnDate: state.returnDate,
+    street: `${state.destination.street ? state.destination.street : ''}`,
+    city: `${state.destination.city ? state.destination.city : ''}`,
+    state: `${state.destination.state ? state.destination.state : ''}`,
+    country: `${state.destination.country ? state.destination.country : ''}`,
+    zipCode: `${state.destination.zipCode ? state.destination.zipCode : ''}`,
+    ...state
   })
 
   const handleChange = evt => {
@@ -20,12 +29,28 @@ const EditTrip = (props) => {
   }
 
   const handleSubmit =  async (evt) => {
+    const adjustedFormData = {
+      name: formData.name,
+      // departureDate: formData.departureDate,
+      // returnDate: formData.returnDate,
+      travelMethod: formData.travelMethod,
+      destination: {
+        street: formData.street,
+        city: formData.city,
+        state: formData.state,
+        country: formData.country,
+        zipCode: formData.zipCode
+      },
+      ...formData
+    }
+    evt.preventDefault()
+    props.handleUpdateTrip(adjustedFormData)
   }
 
   return (  
     <main>
       <form onSubmit={handleSubmit} className={styles.container}>
-        <h3 className={styles["form-header"]}>Let's get you going right away,</h3>
+        <h3 className={styles["form-header"]}>Let's edit your trip,</h3>
         <div className={styles['input-container']}>
           <label htmlFor="name-input">Name your Trip:</label>
           <input 
@@ -68,7 +93,7 @@ const EditTrip = (props) => {
           </div>
         )}
         <div className={styles['input-container']}>
-          <label htmlFor="city-input">What city are you going to?</label>
+          <label htmlFor="city-input">What city?</label>
           <input 
             required
             type="text"
@@ -98,9 +123,9 @@ const EditTrip = (props) => {
           </select>
         </div>
         <div className={styles['input-container']}>
-          <label htmlFor="departure-datepicker">When do you plan to leave?</label>
+          <label htmlFor="departure-datepicker">When do you leave?</label>
           <DatePicker 
-            selected={formData.departureDate}
+            selected={new Date(formData.departureDate)}
             id="departure-datepicker"
             onChange={(date) => (setFormData({...formData, departureDate: date}))}
           />
@@ -108,12 +133,12 @@ const EditTrip = (props) => {
         <div className={styles['input-container']}>
           <label htmlFor="departure-datepicker">When do you return?</label>
           <DatePicker 
-            selected={formData.returnDate}
+            selected={new Date(formData.returnDate)}
             id="departure-datepicker"
             onChange={(date) => (setFormData({...formData, returnDate: date}))}
           />
         </div>
-        <button type="submit" className={styles["create-btn"]}>Create Your Trip</button>
+        <button type="submit" className={styles["create-btn"]}>Save</button>
       </form>
     </main>
   )

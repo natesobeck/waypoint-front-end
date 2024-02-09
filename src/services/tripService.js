@@ -55,6 +55,22 @@ async function deleteTrip(tripId) {
   }
 }
 
+async function update(updateFormData) {
+  try {
+    const res = await fetch(`${BASE_URL}/${updateFormData._id}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updateFormData)
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 async function createScheduleItem(formData, tripId) {
   try {
     const res = await fetch(`${BASE_URL}/${tripId}/schedule`, {
@@ -76,5 +92,6 @@ export {
   show,
   create,
   deleteTrip as delete,
+  update,
   createScheduleItem
 }

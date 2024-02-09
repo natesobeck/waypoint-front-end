@@ -87,7 +87,7 @@ const NewTrip = (props) => {
           </div>
         )}
         <div className={styles['input-container']}>
-          <label htmlFor="city-input">What city are you going to?</label>
+          <label htmlFor="city-input">What city?</label>
           <input 
             required
             type="text"
@@ -117,7 +117,7 @@ const NewTrip = (props) => {
           </select>
         </div>
         <div className={styles['input-container']}>
-          <label htmlFor="departure-datepicker">When do you plan to leave?</label>
+          <label htmlFor="departure-datepicker">When do you leave?</label>
           <DatePicker 
             selected={formData.departureDate}
             id="departure-datepicker"

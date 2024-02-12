@@ -1,5 +1,4 @@
-// components
-import ScheduleItem from "../ScheduleItem/ScheduleItem"
+// component
 import ScheduleDay from "../ScheduleDay/ScheduleDay"
 import { IoIosAddCircleOutline } from "react-icons/io"
 

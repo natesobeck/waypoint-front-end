@@ -31,8 +31,8 @@ const EditTrip = (props) => {
   const handleSubmit =  async (evt) => {
     const adjustedFormData = {
       name: formData.name,
-      // departureDate: formData.departureDate,
-      // returnDate: formData.returnDate,
+      departureDate: formData.departureDate,
+      returnDate: formData.returnDate,
       travelMethod: formData.travelMethod,
       destination: {
         street: formData.street,
@@ -41,9 +41,11 @@ const EditTrip = (props) => {
         country: formData.country,
         zipCode: formData.zipCode
       },
-      ...formData
+      addedBy: state.addedBy,
+      _id: state._id
     }
     evt.preventDefault()
+    console.log(adjustedFormData)
     props.handleUpdateTrip(adjustedFormData)
   }
 

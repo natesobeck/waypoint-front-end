@@ -1,5 +1,6 @@
 // components
 import ScheduleItem from "../ScheduleItem/ScheduleItem"
+import ScheduleDay from "../ScheduleDay/ScheduleDay"
 import { IoIosAddCircleOutline } from "react-icons/io"
 
 // npm modules
@@ -29,11 +30,11 @@ const Itinerary = (props) => {
   })
   const [showAddScheduleItem, setShowAddScheduleItem] = useState(false)
 
-  let sortedSchedule = props.trip.schedule.sort((a, b) => {
-    return new Date(a.startTime).valueOf() - new Date(b.startTime).valueOf()
+  const sortedSchedule = props.trip.schedule.sort((a, b) => {
+    return new Date(a.date).valueOf() - new Date(b.date).valueOf()
   })
 
-  const [schedule, setSchedule] = useState([...props.trip.schedule])
+  const [schedule, setSchedule] = useState(sortedSchedule)
   const navigate = useNavigate()
 
   const handleChange = evt => {
@@ -57,11 +58,33 @@ const Itinerary = (props) => {
     }
     evt.preventDefault()
     tripService.createScheduleItem(adjustedFormData, props.trip._id)
-    console.log(adjustedFormData)
-    sortedSchedule = [...schedule, adjustedFormData].sort((a, b) => {
-      return new Date(a.startTime).valueOf() - new Date(b.startTime).valueOf()
-    })
-    setSchedule(sortedSchedule)
+    const scheduleDay = schedule.find(day => 
+      new Date(day.date).toLocaleDateString() === new Date(adjustedFormData.startTime).toLocaleDateString()
+    )
+    if (scheduleDay) {
+      const updatedScheduleDay = {
+        date: scheduleDay.date,
+        scheduleItems: [...scheduleDay.scheduleItems, adjustedFormData]
+      }
+      const filteredSchedule = schedule.filter(day => {
+        return new Date(day.date).toLocaleDateString() !== new Date(updatedScheduleDay.date).toLocaleDateString()
+      })
+      setSchedule([...filteredSchedule, updatedScheduleDay].sort((a, b) => {
+        return new Date(a.date).valueOf() - new Date(b.date).valueOf()
+      }))
+    } else {
+      const newScheduleDay = {
+        date: adjustedFormData.startTime,
+        scheduleItems: [adjustedFormData]
+      }
+      setSchedule([...schedule, newScheduleDay].sort((a, b) => {
+        return new Date(a.date).valueOf() - new Date(b.date).valueOf()
+      }))
+    }
+    // sortedSchedule = [...schedule].sort((a, b) => {
+    //   return new Date(a.startTime).valueOf() - new Date(b.startTime).valueOf()
+    // })
+    // setSchedule(sortedSchedule)
     navigate(`/trips/${props.trip._id}`)
   }
 
@@ -179,7 +202,7 @@ const Itinerary = (props) => {
           </div>
           <button type="submit" className={styles['create-schedule-btn']}>Create Schedule Item</button>
         </form>}
-      <div>
+      {/* <div>
         {schedule.length       
           ? schedule.map((scheduleItem, i)=> (
             i === 0 || new Date(scheduleItem.startTime).toISOString().slice(0, 10) !== new Date(schedule[i - 1].startTime).toISOString().slice(0, 10)
@@ -200,7 +223,17 @@ const Itinerary = (props) => {
           ))
           : <p>Theres nothing in your schedule yet! Add something.</p>
         }
+      </div> */}
+      {
+      <div>
+        {schedule.length
+          ? schedule.map(day => (
+            <ScheduleDay key={day.date} day={day}/>
+          ))
+          : <p>Theres nothing in your schedule yet! Add something.</p>
+        }
       </div>
+      }
     </>
   )
 }

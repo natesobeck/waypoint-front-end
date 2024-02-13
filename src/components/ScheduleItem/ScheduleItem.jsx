@@ -12,7 +12,7 @@ const ScheduleItem = ({ scheduleItem }) => {
         <p>{scheduleItem.location}</p>
         <p>{scheduleItem.category}</p>
         <div className={styles['address-container']}>
-          {scheduleItem.address.street.length ? `${scheduleItem.address.street}, ${scheduleItem.address.city}, ${scheduleItem.address.zipCode}` : ''}
+          {scheduleItem.address.street.length ? `${scheduleItem.address.street}, ${scheduleItem.address.city}, ${scheduleItem.address.zipCode}` : 'No Known Address'}
         </div>
       </div>
     </div>

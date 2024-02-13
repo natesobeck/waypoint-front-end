@@ -32,29 +32,37 @@ const Itinerary = (props) => {
   const sortedSchedule = props.trip.schedule.sort((a, b) => {
     return new Date(a.date).valueOf() - new Date(b.date).valueOf()
   })
-
+  sortedSchedule.forEach(day => {
+    day.scheduleItems = day.scheduleItems.sort((a, b) => {
+      return new Date(a.startTime).valueOf() - new Date(b.startTime).valueOf()
+    })
+  })
+  
   const [schedule, setSchedule] = useState(sortedSchedule)
+
+  console.log(schedule)
   const navigate = useNavigate()
 
   const handleChange = evt => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value})
   }
 
-  const handleSubmit = evt => {
-    const adjustedFormData = {
-      name: formData.name,
-      startTime: formData.startTime.toString(),
-      endTime: formData.endTime.toString(),
-      category: formData.category,
-      venue: formData.venue,
-      address: {
-        street: formData.street,
-        city: formData.city,
-        state: formData.state,
-        country: formData.country,
-        zipCode: formData.zipCode
-      }
+  const adjustedFormData = {
+    name: formData.name,
+    startTime: formData.startTime.toString(),
+    endTime: formData.endTime.toString(),
+    category: formData.category,
+    venue: formData.venue,
+    address: {
+      street: formData.street,
+      city: formData.city,
+      state: formData.state,
+      country: formData.country,
+      zipCode: formData.zipCode
     }
+  }
+
+  const handleSubmit = evt => {
     evt.preventDefault()
     tripService.createScheduleItem(adjustedFormData, props.trip._id)
     const scheduleDay = schedule.find(day => 
@@ -63,11 +71,14 @@ const Itinerary = (props) => {
     if (scheduleDay) {
       const updatedScheduleDay = {
         date: scheduleDay.date,
-        scheduleItems: [...scheduleDay.scheduleItems, adjustedFormData]
+        scheduleItems: [...scheduleDay.scheduleItems, adjustedFormData].sort((a, b) => {
+          return new Date(a.startTime).valueOf() - new Date(b.startTime).valueOf()
+        })
       }
       const filteredSchedule = schedule.filter(day => {
         return new Date(day.date).toLocaleDateString() !== new Date(updatedScheduleDay.date).toLocaleDateString()
       })
+      console.log(filteredSchedule)
       setSchedule([...filteredSchedule, updatedScheduleDay].sort((a, b) => {
         return new Date(a.date).valueOf() - new Date(b.date).valueOf()
       }))
@@ -80,10 +91,6 @@ const Itinerary = (props) => {
         return new Date(a.date).valueOf() - new Date(b.date).valueOf()
       }))
     }
-    // sortedSchedule = [...schedule].sort((a, b) => {
-    //   return new Date(a.startTime).valueOf() - new Date(b.startTime).valueOf()
-    // })
-    // setSchedule(sortedSchedule)
     navigate(`/trips/${props.trip._id}`)
   }
 
@@ -201,33 +208,11 @@ const Itinerary = (props) => {
           </div>
           <button type="submit" className={styles['create-schedule-btn']}>Create Schedule Item</button>
         </form>}
-      {/* <div>
-        {schedule.length       
-          ? schedule.map((scheduleItem, i)=> (
-            i === 0 || new Date(scheduleItem.startTime).toISOString().slice(0, 10) !== new Date(schedule[i - 1].startTime).toISOString().slice(0, 10)
-            ?
-              <div key={i}>
-                <h1 className={styles['schedule-day']}>
-                  {new Date(scheduleItem.startTime).toLocaleDateString(undefined, {
-                    weekday: 'long',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
-                </h1>
-                <ScheduleItem scheduleItem={scheduleItem} key={scheduleItem._id}/>
-              </div>
-            : 
-              <ScheduleItem key={scheduleItem.createdAt} scheduleItem={scheduleItem}/>
-          ))
-          : <p>Theres nothing in your schedule yet! Add something.</p>
-        }
-      </div> */}
       {
       <div>
         {schedule.length
           ? schedule.map(day => (
-            <ScheduleDay key={day.date} day={day}/>
+            <ScheduleDay key={day.date} day={day} formData={adjustedFormData}/>
           ))
           : <p>Theres nothing in your schedule yet! Add something.</p>
         }

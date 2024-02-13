@@ -27,8 +27,11 @@ const Itinerary = (props) => {
     country: '',
     zipCode: ''
   })
+  
+  // Schedule, Expenses, Packing List state
   const [showAddScheduleItem, setShowAddScheduleItem] = useState(false)
 
+  // sorting the schedule before setting state
   const sortedSchedule = props.trip.schedule.sort((a, b) => {
     return new Date(a.date).valueOf() - new Date(b.date).valueOf()
   })
@@ -40,7 +43,6 @@ const Itinerary = (props) => {
   
   const [schedule, setSchedule] = useState(sortedSchedule)
 
-  console.log(schedule)
   const navigate = useNavigate()
 
   const handleChange = evt => {

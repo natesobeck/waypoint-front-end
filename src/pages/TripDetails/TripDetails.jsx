@@ -15,10 +15,22 @@ const TripDetails = () => {
   const { tripId } = useParams()
   const [trip, setTrip] = useState(null)
   const [showSchedule, setShowSchedule] = useState(false)
+  const [showPackingList, setShowPackingList] = useState(false)
 
   const handleShowSchedule = (evt) => {
     handleActiveSelection(evt)
+    if (showPackingList) {
+      setShowPackingList(!showPackingList)
+    }
     setShowSchedule(!showSchedule)
+  }
+
+  const handleShowPackingList = (evt) => {
+    handleActiveSelection(evt)
+    if (showSchedule) {
+      setShowSchedule(!showSchedule)
+    }
+    setShowPackingList(!showPackingList)
   }
 
   const handleActiveSelection = (evt) => {
@@ -56,9 +68,10 @@ const TripDetails = () => {
       <div className={styles['btn-container']}>
         <button onClick={handleShowSchedule} className={`${styles.btn} ${styles['schedule-btn']} ${styles['main-btn']}`}>My Schedule</button>
         <button  className={`${styles.btn} ${styles['expenses-btn']} ${styles['main-btn']}`} onClick={handleActiveSelection}>My Expenses</button>
-        <button  className={`${styles.btn} ${styles['packing-list-btn']} ${styles['main-btn']}`} onClick={handleActiveSelection}>My Packing List</button>
+        <button  className={`${styles.btn} ${styles['packing-list-btn']} ${styles['main-btn']}`} onClick={handleShowPackingList}>My Packing List</button>
       </div>
       {showSchedule && <Itinerary trip={trip} setTrip={setTrip}/>}
+      {showPackingList && <h1>This is the packing list</h1>}
     </main>
   )
 }

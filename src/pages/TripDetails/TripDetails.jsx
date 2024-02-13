@@ -7,6 +7,7 @@ import * as tripService from '../../services/tripService'
 
 // components
 import Itinerary from "../../components/Itinerary/Itinerary"
+import PackingList from "../../components/PackingList/PackingList"
 
 // css
 import styles from './TripDetails.module.css'
@@ -71,7 +72,7 @@ const TripDetails = () => {
         <button  className={`${styles.btn} ${styles['packing-list-btn']} ${styles['main-btn']}`} onClick={handleShowPackingList}>My Packing List</button>
       </div>
       {showSchedule && <Itinerary trip={trip} setTrip={setTrip}/>}
-      {showPackingList && <h1>This is the packing list</h1>}
+      {showPackingList && <PackingList list={trip.packingList} showPackingList={showPackingList}/>}
     </main>
   )
 }

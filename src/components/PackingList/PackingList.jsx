@@ -9,6 +9,13 @@ import { useState } from 'react'
 
 const PackingList = ({ list }) => {
   const [showAddPackingListItem, setShowAddPackingListItem] = useState(false)
+  const [formData, setFormData] = useState({
+    name: ''
+  })
+
+  const handleChange = evt => {
+    setFormData({ ...formData, [evt.target.name]: evt.target.value})
+  }
 
   const handleShowAddPackingListItem = () => {
     setShowAddPackingListItem(!showAddPackingListItem)
@@ -26,6 +33,17 @@ const PackingList = ({ list }) => {
               <IoIosAddCircleOutline className={styles.icon}/>
             </div>
         </button>
+      }
+      {showAddPackingListItem && 
+        <form>
+          <input 
+            placeholder="Name i.e. socks, phone charger"
+            name="name"
+            type="text"
+            value={formData.name || ''}
+            onChange={handleChange}
+          />
+        </form>
       }
       <div className={styles['list-container']}>
         <h1 className={styles.header}>My List</h1>

@@ -72,7 +72,7 @@ const TripDetails = () => {
         <button  className={`${styles.btn} ${styles['packing-list-btn']} ${styles['main-btn']}`} onClick={handleShowPackingList}>My Packing List</button>
       </div>
       {showSchedule && <Itinerary trip={trip} setTrip={setTrip}/>}
-      {showPackingList && <PackingList list={trip.packingList} showPackingList={showPackingList}/>}
+      {showPackingList && <PackingList trip={trip} showPackingList={showPackingList}/>}
     </main>
   )
 }

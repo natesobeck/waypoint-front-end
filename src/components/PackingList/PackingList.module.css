@@ -63,7 +63,7 @@ input[type="checkbox"] {
   background-color: rgba(255, 255, 255, .8);
   filter: drop-shadow(5px 5px rgba(0, 0, 0, .1));
   border-radius: 10px;
-  color: rgba(0, 0, 0, .8)
+  color: rgba(0, 0, 0, .8);
 }
 
 .header {
@@ -74,4 +74,47 @@ input[type="checkbox"] {
   align-self: center;
   border-bottom: 1px solid rgba(0, 0, 0, .1);
   width: 95%;
+}
+
+.list-form {
+  display: flex;
+  padding: 20px 10px 10px 10px;
+  background-color: rgba(255, 255, 255, .8);
+  filter: drop-shadow(5px 5px rgba(0, 0, 0, .1));
+  max-width: 500px;
+  margin: 10px 0px;
+  align-items: center;
+}
+
+.submit-btn {
+  padding: 8px 8px 2px 6px;
+  border: none;
+  background-color: #2196f3;
+  color: white;
+  font-size: 1.5em;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.submit-btn:hover {
+  cursor: pointer;
+  background-color: #1d80d2;
+}
+
+.list-input {
+  padding: 7px;
+  font-size: 1.2em;
+  border-top: 1px solid rgba(0, 0, 0, .2);
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  border-left: 1px solid rgba(0, 0, 0, .2);
+  border-right: none;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.list-input:focus {
+  outline: none;
+  border: 2px solid #2196f3;
+  transition: border 50ms ease-in-out;
+  padding: 6px;
 }

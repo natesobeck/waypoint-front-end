@@ -87,11 +87,33 @@ async function createScheduleItem(formData, tripId) {
   }
 }
 
+async function createPackingListItem(formData, tripId) {
+  try {
+    const res = await fetch(`${BASE_URL}/${tripId}/packinglist`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export {
+  // trips
   index,
   show,
   create,
   deleteTrip as delete,
   update,
-  createScheduleItem
+
+  // schedule
+  createScheduleItem,
+
+  // packing list
+  createPackingListItem
 }

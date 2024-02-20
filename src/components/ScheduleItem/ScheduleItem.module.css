@@ -6,8 +6,9 @@
   padding: 10px 15px;
   margin: 10px 0px;
   max-width: 600px;
-  display: flex;
+  display: grid;
   align-items: center;
+  grid-template-columns: 5fr 4fr 8fr;
 }
 
 .name {
@@ -18,7 +19,7 @@
 .time {
   font-weight: 500;
   background-color: rgba(235, 235, 235);
-  padding: 10px;
+  padding: 10px 0px 10px 10px;
   max-width: 160px;
   border-radius: 10px;
   margin-right: 20px;
@@ -28,4 +29,32 @@
   height: 100%;
   border-left: 1px solid rgba(0, 0, 0, .1);
   padding-left: 20px;
+}
+
+.btn-container {
+  justify-self: flex-end;
+  border-left: 1px solid rgba(0, 0, 0, .1);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+}
+
+.icon {
+  font-size: 2em;
+  fill: #D11A2A;
+}
+
+.delete-btn {
+  background-color: white;
+  padding: unset;
+  height: 40px;
+  width: 40px;
+  border: 1px solid #D11A2A;
+  border-radius: 10px;
+}
+
+.delete-btn:hover {
+  background-color: rgba(209, 26, 42, .1);
+  cursor: pointer;
 }

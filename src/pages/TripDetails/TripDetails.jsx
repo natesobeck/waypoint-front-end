@@ -17,6 +17,7 @@ const TripDetails = () => {
   const [trip, setTrip] = useState(null)
   const [showSchedule, setShowSchedule] = useState(false)
   const [showPackingList, setShowPackingList] = useState(false)
+  const [schedule, setSchedule] = useState(null)
 
   const handleShowSchedule = (evt) => {
     handleActiveSelection(evt)
@@ -49,6 +50,15 @@ const TripDetails = () => {
     const fetchTrip = async () => {
       const tripData = await tripService.show(tripId)
       setTrip(tripData)
+      const sortedSchedule = tripData.schedule.sort((a, b) => {
+        return new Date(a.date).valueOf() - new Date(b.date).valueOf()
+      })
+      sortedSchedule.forEach(day => {
+        day.scheduleItems = day.scheduleItems.sort((a, b) => {
+          return new Date(a.startTime).valueOf() - new Date(b.startTime).valueOf()
+        })
+      })
+      setSchedule(sortedSchedule)
     }
     fetchTrip()
   }, [tripId])
@@ -71,7 +81,7 @@ const TripDetails = () => {
         <button  className={`${styles.btn} ${styles['expenses-btn']} ${styles['main-btn']}`} onClick={handleActiveSelection}>My Expenses</button>
         <button  className={`${styles.btn} ${styles['packing-list-btn']} ${styles['main-btn']}`} onClick={handleShowPackingList}>My Packing List</button>
       </div>
-      {showSchedule && <Itinerary trip={trip} setTrip={setTrip}/>}
+      {showSchedule && <Itinerary trip={trip} setTrip={setTrip} schedule={schedule} setSchedule={setSchedule}/>}
       {showPackingList && <PackingList trip={trip} showPackingList={showPackingList}/>}
     </main>
   )

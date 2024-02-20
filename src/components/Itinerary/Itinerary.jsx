@@ -14,7 +14,7 @@ import * as tripService from '../../services/tripService'
 import "react-datepicker/dist/react-datepicker.css"
 import styles from './Itinerary.module.css'
 
-const Itinerary = (props) => {
+const Itinerary = ({ trip, schedule, setSchedule }) => {
   const [formData, setFormData] = useState({
     name: '',
     startTime: new Date(),
@@ -32,16 +32,16 @@ const Itinerary = (props) => {
   const [showAddScheduleItem, setShowAddScheduleItem] = useState(false)
 
   // sorting the schedule before setting state
-  const sortedSchedule = props.trip.schedule.sort((a, b) => {
-    return new Date(a.date).valueOf() - new Date(b.date).valueOf()
-  })
-  sortedSchedule.forEach(day => {
-    day.scheduleItems = day.scheduleItems.sort((a, b) => {
-      return new Date(a.startTime).valueOf() - new Date(b.startTime).valueOf()
-    })
-  })
+  // const sortedSchedule = trip.schedule.sort((a, b) => {
+  //   return new Date(a.date).valueOf() - new Date(b.date).valueOf()
+  // })
+  // sortedSchedule.forEach(day => {
+  //   day.scheduleItems = day.scheduleItems.sort((a, b) => {
+  //     return new Date(a.startTime).valueOf() - new Date(b.startTime).valueOf()
+  //   })
+  // })
   
-  const [schedule, setSchedule] = useState(sortedSchedule)
+  // const [schedule, setSchedule] = useState(sortedSchedule)
 
   const navigate = useNavigate()
 
@@ -66,7 +66,7 @@ const Itinerary = (props) => {
 
   const handleSubmit = evt => {
     evt.preventDefault()
-    tripService.createScheduleItem(adjustedFormData, props.trip._id)
+    tripService.createScheduleItem(adjustedFormData, trip._id)
     const scheduleDay = schedule.find(day => 
       new Date(day.date).toLocaleDateString() === new Date(adjustedFormData.startTime).toLocaleDateString()
     )
@@ -93,11 +93,30 @@ const Itinerary = (props) => {
         return new Date(a.date).valueOf() - new Date(b.date).valueOf()
       }))
     }
-    navigate(`/trips/${props.trip._id}`)
+    navigate(`/trips/${trip._id}`)
   }
 
   const handleShowAddScheduleItem = () => {
     setShowAddScheduleItem(!showAddScheduleItem)
+  }
+
+  const handleDeleteItem = async (scheduleItem) => {
+    tripService.deleteScheduleItem(trip._id, scheduleItem._id)
+    const day = schedule.find(day => {
+      return new Date(day.date).toLocaleDateString() === new Date(scheduleItem.startTime).toLocaleDateString()
+    })
+    const filteredItems = day.scheduleItems.filter(item => {
+      return item._id !== scheduleItem._id
+    })
+    const newDay = {
+      date: day.date,
+      scheduleItems: filteredItems,
+      _id: day._id
+    }
+    const filteredSchedule = schedule.filter(day => {
+      return day._id !== newDay._id
+    })
+    setSchedule(newDay.scheduleItems.length ? [...filteredSchedule, newDay] : [...filteredSchedule])
   }
 
   return (
@@ -212,10 +231,19 @@ const Itinerary = (props) => {
         </form>}
       {
       <div>
-        {schedule.length
-          ? schedule.map(day => (
-            <ScheduleDay key={day.date} day={day} formData={adjustedFormData}/>
-          ))
+        {schedule.filter(day => day.scheduleItems.length).length
+          ? schedule
+            .filter(day => 
+              day.scheduleItems.length
+            )
+            .map(day => (
+              <ScheduleDay 
+                key={day.date}
+                day={day}
+                formData={adjustedFormData} 
+                handleDeleteItem={handleDeleteItem}
+              />
+            ))
           : <p>Theres nothing in your schedule yet! Add something.</p>
         }
       </div>

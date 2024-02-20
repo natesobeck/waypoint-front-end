@@ -31,8 +31,7 @@ const PackingList = ({ trip }) => {
   }
 
   return (
-
-    <> 
+    <div> 
       {!showAddPackingListItem && 
         <button 
           onClick={handleShowAddPackingListItem}
@@ -66,7 +65,7 @@ const PackingList = ({ trip }) => {
           </div>
         ))}
       </div>
-    </> 
+    </div> 
   )
 }
 

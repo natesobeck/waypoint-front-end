@@ -1,7 +1,27 @@
 // css
 import styles from './ScheduleItem.module.css'
 
-const ScheduleItem = ({ scheduleItem }) => {
+const ScheduleItem = ({ scheduleItem, handleDeleteItem }) => {
+
+  // const handleDeleteItem = async () => {
+  //   tripService.deleteScheduleItem(tripId, scheduleItem._id)
+  //   const day = schedule.find(day => {
+  //     return new Date(day.date).toLocaleDateString() === new Date(scheduleItem.startTime).toLocaleDateString()
+  //   })
+  //   const filteredItems = day.scheduleItems.filter(item => {
+  //     return item._id !== scheduleItem._id
+  //   })
+  //   const newDay = {
+  //     date: day.date,
+  //     scheduleItems: filteredItems,
+  //     _id: day._id
+  //   }
+  //   const filteredSchedule = schedule.filter(day => {
+  //     return day._id !== newDay._id
+  //   })
+  //   setSchedule(newDay.scheduleItems.length ? [...filteredSchedule, newDay] : [...filteredSchedule])
+  // }
+
   return (  
     <div className={styles.container}>
       <div>
@@ -15,6 +35,7 @@ const ScheduleItem = ({ scheduleItem }) => {
           {scheduleItem.address.street.length ? `${scheduleItem.address.street}, ${scheduleItem.address.city}, ${scheduleItem.address.zipCode}` : 'No Known Address'}
         </div>
       </div>
+      <button onClick={() => handleDeleteItem(scheduleItem)}>Delete this Item</button>
     </div>
   )
 }

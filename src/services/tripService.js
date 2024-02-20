@@ -3,6 +3,8 @@ import * as tokenService from './tokenService'
 
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/api/trips`
 
+// trips
+
 async function index() {
   try {
     const res = await fetch(BASE_URL, {
@@ -71,6 +73,8 @@ async function update(updateFormData) {
   }
 }
 
+// schedule
+
 async function createScheduleItem(formData, tripId) {
   try {
     const res = await fetch(`${BASE_URL}/${tripId}/schedule`, {
@@ -86,6 +90,22 @@ async function createScheduleItem(formData, tripId) {
     console.log(error)
   }
 }
+
+async function deleteScheduleItem(tripId, itemId) {
+  try {
+    const res = await fetch(`${BASE_URL}/${tripId}/schedule/${itemId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+      }
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// packing list
 
 async function createPackingListItem(formData, tripId) {
   try {
@@ -113,6 +133,7 @@ export {
 
   // schedule
   createScheduleItem,
+  deleteScheduleItem,
 
   // packing list
   createPackingListItem

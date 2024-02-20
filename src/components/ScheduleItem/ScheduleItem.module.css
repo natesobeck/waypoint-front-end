@@ -36,25 +36,45 @@
   border-left: 1px solid rgba(0, 0, 0, .1);
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 10px;
   padding-left: 15px;
 }
 
-.icon {
+.delete-icon {
   font-size: 2em;
   fill: #D11A2A;
 }
 
-.delete-btn {
+.edit-icon {
+  font-size: 2em;
+  fill: #008000;
+}
+
+.btn {
   background-color: white;
   padding: unset;
   height: 40px;
   width: 40px;
-  border: 1px solid #D11A2A;
   border-radius: 10px;
+}
+
+.delete-btn {
+  border: 1px solid rgb(209, 26, 42);
+}
+
+.edit-btn {
+  border: 1px solid rgb(0, 128, 0);
 }
 
 .delete-btn:hover {
   background-color: rgba(209, 26, 42, .1);
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background-color: rgba(0, 128, 0, .1);
   cursor: pointer;
 }

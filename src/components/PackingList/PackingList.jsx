@@ -18,8 +18,7 @@ const PackingList = ({ trip }) => {
   const [packingList, setPackingList] = useState(trip.packingList)
   const handleChange = evt => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value})
-  } 
-  console.log(packingList)
+  }
 
   const handleShowAddPackingListItem = () => {
     setShowAddPackingListItem(!showAddPackingListItem)

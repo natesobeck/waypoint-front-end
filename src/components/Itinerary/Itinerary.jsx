@@ -28,20 +28,7 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
     zipCode: ''
   })
   
-  // Schedule, Expenses, Packing List state
   const [showAddScheduleItem, setShowAddScheduleItem] = useState(false)
-
-  // sorting the schedule before setting state
-  // const sortedSchedule = trip.schedule.sort((a, b) => {
-  //   return new Date(a.date).valueOf() - new Date(b.date).valueOf()
-  // })
-  // sortedSchedule.forEach(day => {
-  //   day.scheduleItems = day.scheduleItems.sort((a, b) => {
-  //     return new Date(a.startTime).valueOf() - new Date(b.startTime).valueOf()
-  //   })
-  // })
-  
-  // const [schedule, setSchedule] = useState(sortedSchedule)
 
   const navigate = useNavigate()
 

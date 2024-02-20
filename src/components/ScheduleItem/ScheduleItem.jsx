@@ -3,8 +3,14 @@ import styles from './ScheduleItem.module.css'
 
 // components
 import { MdDelete } from "react-icons/md"
+import { MdEdit } from "react-icons/md";
+
+// npm packages
+import { useState } from 'react'
 
 const ScheduleItem = ({ scheduleItem, handleDeleteItem }) => {
+  
+  const [showEditItem, setShowEditItem] = useState(false)
 
   return (  
     <div className={styles.container}>
@@ -20,8 +26,12 @@ const ScheduleItem = ({ scheduleItem, handleDeleteItem }) => {
         </div>
       </div>
       <div className={styles['btn-container']}>
-        <button onClick={() => handleDeleteItem(scheduleItem)} className={styles['delete-btn']}><MdDelete className={styles.icon}/></button>
+        <button onClick={() => handleDeleteItem(scheduleItem)} className={`${styles['delete-btn']} ${styles.btn}`}><MdDelete className={styles['delete-icon']}/></button>
+        <button onClick={() => setShowEditItem(!showEditItem)} className={`${styles['edit-btn']} ${styles.btn}`}><MdEdit className={styles['edit-icon']}/></button>
       </div>
+      {
+        showEditItem && <h1>Wazzuppp</h1>
+      }
     </div>
   )
 }

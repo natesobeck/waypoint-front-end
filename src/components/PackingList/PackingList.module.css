@@ -1,6 +1,6 @@
 .list-container {
   margin: 10px 0px;
-  padding-bottom: 10px;
+  padding-bottom: 30px;
   width: 100%;
   max-width: 500px;
   font-size: 1.2em;
@@ -120,4 +120,13 @@ input[type="checkbox"] {
   border: 2px solid #2196f3;
   transition: border 50ms ease-in-out;
   padding: 6px;
+}
+
+.message {
+  font-weight: 500;
+  padding: 10px;
+  margin: unset;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  width: 95%;
+  font-size: 1em;
 }

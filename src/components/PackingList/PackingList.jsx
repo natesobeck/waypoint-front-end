@@ -19,6 +19,7 @@ const PackingList = ({ trip }) => {
   const handleChange = evt => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value})
   } 
+  console.log(packingList)
 
   const handleShowAddPackingListItem = () => {
     setShowAddPackingListItem(!showAddPackingListItem)
@@ -43,7 +44,6 @@ const PackingList = ({ trip }) => {
         </button>
       }
       {showAddPackingListItem && 
-      
         <form onSubmit={handleSubmitPackingListItem} className={styles['list-form']}>
           <input 
             placeholder="Name i.e. socks, phone charger"
@@ -58,12 +58,16 @@ const PackingList = ({ trip }) => {
       }
       <div className={styles['list-container']}>
         <h1 className={styles.header}>My List</h1>
-        {packingList.length && packingList.map(item => (
-          <div className={styles['list-item-container']} key={item._id}>
-            <input type="checkbox" selected={item.packed ? true : false} className={styles.checkbox}/>
-            <p className={styles['list-item']}>{item.name}</p>
-          </div>
-        ))}
+        {packingList.length 
+          ? packingList.map(item => (
+              <div className={styles['list-item-container']} key={item._id}>
+                <input type="checkbox" selected={item.packed ? true : false} className={styles.checkbox}/>
+                <p className={styles['list-item']}>{item.name}</p>
+              </div>
+            ))
+          : <h3 className={styles.message}>Nothing here yet!</h3>
+        } 
+          
       </div>
     </div> 
   )

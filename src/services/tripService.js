@@ -105,6 +105,22 @@ async function deleteScheduleItem(tripId, itemId) {
   }
 }
 
+async function updateScheduleItem(tripId, itemId, formData) {
+  try {
+    const res = await fetch(`${BASE_URL}/${tripId}/schedule/${itemId}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 // packing list
 
 async function createPackingListItem(formData, tripId) {
@@ -134,6 +150,7 @@ export {
   // schedule
   createScheduleItem,
   deleteScheduleItem,
+  updateScheduleItem,
 
   // packing list
   createPackingListItem

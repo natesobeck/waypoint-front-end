@@ -2,15 +2,17 @@
 import styles from './ScheduleItem.module.css'
 
 // components
+import EditScheduleItem from '../EditScheduleItem/EditScheduleItem';
 import { MdDelete } from "react-icons/md"
 import { MdEdit } from "react-icons/md";
 
 // npm packages
 import { useState } from 'react'
 
-const ScheduleItem = ({ scheduleItem, handleDeleteItem }) => {
+const ScheduleItem = ({ scheduleItem, handleDeleteItem, tripId, setSchedule, schedule }) => {
   
-  const [showEditItem, setShowEditItem] = useState(false)
+// state to show and hide the edit form on clicking the edit button
+  const [showEditForm, setShowEditForm] = useState(false)
 
   return (  
     <div className={styles.container}>
@@ -27,11 +29,9 @@ const ScheduleItem = ({ scheduleItem, handleDeleteItem }) => {
       </div>
       <div className={styles['btn-container']}>
         <button onClick={() => handleDeleteItem(scheduleItem)} className={`${styles['delete-btn']} ${styles.btn}`}><MdDelete className={styles['delete-icon']}/></button>
-        <button onClick={() => setShowEditItem(!showEditItem)} className={`${styles['edit-btn']} ${styles.btn}`}><MdEdit className={styles['edit-icon']}/></button>
+        <button onClick={() => setShowEditForm(!showEditForm)} className={`${styles['edit-btn']} ${styles.btn}`}><MdEdit className={styles['edit-icon']}/></button>
       </div>
-      {
-        showEditItem && <h1>Wazzuppp</h1>
-      }
+      {showEditForm && <EditScheduleItem scheduleItem={scheduleItem} tripId={tripId} setSchedule={setSchedule} schedule={schedule} setShowEditForm={setShowEditForm} showEditForm={showEditForm}/>}
     </div>
   )
 }

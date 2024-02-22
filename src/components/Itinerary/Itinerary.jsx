@@ -229,6 +229,9 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
                 day={day}
                 formData={adjustedFormData} 
                 handleDeleteItem={handleDeleteItem}
+                tripId={trip._id}
+                setSchedule={setSchedule}
+                schedule={schedule}
               />
             ))
           : <p>Theres nothing in your schedule yet! Add something.</p>

@@ -4,7 +4,7 @@ import ScheduleItem from "../ScheduleItem/ScheduleItem"
 // css
 import styles from './ScheduleDay.module.css'
 
-const ScheduleDay = ({ day, handleDeleteItem }) => {
+const ScheduleDay = ({ day, handleDeleteItem, tripId, setSchedule, schedule }) => {
   return ( 
     <>
       <h1 className={styles['schedule-day']}>{new Date(day.date).toLocaleDateString(
@@ -22,6 +22,9 @@ const ScheduleDay = ({ day, handleDeleteItem }) => {
             key={item._id} 
             scheduleItem={item} 
             handleDeleteItem={handleDeleteItem}
+            tripId={tripId}
+            setSchedule={setSchedule}
+            schedule={schedule}
           />
         ))}
       </div>

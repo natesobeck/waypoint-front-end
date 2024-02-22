@@ -9,7 +9,6 @@ import styles from './EditTrip.module.css'
 
 const EditTrip = (props) => {
   const { state } = useLocation()
-
   
   const [formData, setFormData] = useState({
     name: state.name,
@@ -45,7 +44,6 @@ const EditTrip = (props) => {
       _id: state._id
     }
     evt.preventDefault()
-    console.log(adjustedFormData)
     props.handleUpdateTrip(adjustedFormData)
   }
 

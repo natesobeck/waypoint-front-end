@@ -139,6 +139,20 @@ async function createPackingListItem(formData, tripId) {
   }
 }
 
+async function updatePackingListItem(tripId, itemId) {
+  try {
+    const res = await fetch(`${BASE_URL}/${tripId}/packinglist/${itemId}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`
+      }
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export {
   // trips
   index,
@@ -153,5 +167,6 @@ export {
   updateScheduleItem,
 
   // packing list
-  createPackingListItem
+  createPackingListItem,
+  updatePackingListItem
 }

@@ -196,7 +196,6 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
             <label htmlFor="address-inputs">Address: </label>
             <div id="address-inputs" className={styles['address-inputs']}>
               <input 
-                required
                 type="text"
                 name="street"
                 value={formData.street || ""}
@@ -204,7 +203,6 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
                 onChange={handleChange}
               />
               <input 
-                required
                 type="text"
                 name="city"
                 value={formData.city || ""}
@@ -212,7 +210,6 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
                 onChange={handleChange}
               />
               <input 
-                required
                 type="text"
                 name="zipCode"
                 value={formData.zipCode || ""}

@@ -10,12 +10,11 @@ import { useState } from 'react'
 // services
 import * as tripService from '../../services/tripService.js'
 
-const PackingList = ({ trip }) => {
+const PackingList = ({ trip, packingList, setPackingList }) => {
   const [showAddPackingListItem, setShowAddPackingListItem] = useState(false)
   const [formData, setFormData] = useState({
     name: ''
   })
-  const [packingList, setPackingList] = useState(trip.packingList)
   const handleChange = evt => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value})
   }
@@ -24,10 +23,20 @@ const PackingList = ({ trip }) => {
     setShowAddPackingListItem(!showAddPackingListItem)
   }
 
-  const handleSubmitPackingListItem = async (evt) => {
+  const handleSubmitPackingListItem = evt => {
     evt.preventDefault()
     tripService.createPackingListItem(formData, trip._id)
     setPackingList([...packingList, formData])
+  }
+
+  const handleUpdateListItem = (itemId) => {
+    tripService.updatePackingListItem(trip._id, itemId)
+    const newItem = trip.packingList.find(item => item._id === itemId)
+    newItem.packed = !newItem.packed
+    const newList = trip.packingList.map(item => (
+      item._id !== itemId ? item : newItem
+    ))
+    setPackingList(newList)
   }
 
   return (
@@ -59,8 +68,8 @@ const PackingList = ({ trip }) => {
         <h1 className={styles.header}>My List</h1>
         {packingList.length 
           ? packingList.map(item => (
-              <div className={styles['list-item-container']} key={item._id}>
-                <input type="checkbox" selected={item.packed ? true : false} className={styles.checkbox}/>
+              <div className={styles['list-item-container']} key={item.name}>
+                <input type="checkbox" className={styles.checkbox} onClick={() => handleUpdateListItem(item._id)} defaultChecked={item.packed ? true : false}/>
                 <p className={styles['list-item']}>{item.name}</p>
               </div>
             ))

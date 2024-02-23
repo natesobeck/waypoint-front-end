@@ -18,6 +18,7 @@ const TripDetails = () => {
   const [showSchedule, setShowSchedule] = useState(false)
   const [showPackingList, setShowPackingList] = useState(false)
   const [schedule, setSchedule] = useState(null)
+  const [packingList, setPackingList] = useState(null)
 
   const handleShowSchedule = (evt) => {
     handleActiveSelection(evt)
@@ -59,6 +60,7 @@ const TripDetails = () => {
         })
       })
       setSchedule(sortedSchedule)
+      setPackingList(tripData.packingList)
     }
     fetchTrip()
   }, [tripId])
@@ -82,7 +84,7 @@ const TripDetails = () => {
         <button  className={`${styles.btn} ${styles['packing-list-btn']} ${styles['main-btn']}`} onClick={handleShowPackingList}>My Packing List</button>
       </div>
       {showSchedule && <Itinerary trip={trip} setTrip={setTrip} schedule={schedule} setSchedule={setSchedule}/>}
-      {showPackingList && <PackingList trip={trip} showPackingList={showPackingList}/>}
+      {showPackingList && <PackingList trip={trip} packingList={packingList} setPackingList={setPackingList} showPackingList={showPackingList}/>}
     </main>
   )
 }

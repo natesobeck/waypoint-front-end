@@ -9,8 +9,8 @@ import styles from './EditScheduleItem.module.css'
 import * as tripService from "../../services/tripService" 
 
 const EditScheduleItem = ({ scheduleItem, tripId, setSchedule, schedule, setShowEditForm, showEditForm }) => {
-// set initial state of form to scheduleItem
 
+// set initial state of form to scheduleItem
   const [formData, setFormData] = useState({
     name: scheduleItem.name,
     startTime: new Date(scheduleItem.startTime),
@@ -24,23 +24,6 @@ const EditScheduleItem = ({ scheduleItem, tripId, setSchedule, schedule, setShow
     zipCode: scheduleItem.address.zipCode
   })
 
-// adjust the form data to match the back end data structure to use in HandleSubmit
-  const adjustedFormData = {
-    name: formData.name,
-    startTime: formData.startTime.toString(),
-    endTime: formData.endTime.toString(),
-    category: formData.category,
-    venue: formData.venue,
-    address: {
-      street: formData.street,
-      city: formData.city,
-      state: formData.state,
-      country: formData.country,
-      zipCode: formData.zipCode
-    },
-    _id: scheduleItem._id
-  }
-
   // allow form inputs to be saved in state
   const handleChange = evt => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value})
@@ -50,12 +33,42 @@ const EditScheduleItem = ({ scheduleItem, tripId, setSchedule, schedule, setShow
   const handleSubmit = (evt) => {
     // prevent the page refresh
     evt.preventDefault()
+    // adjust the form data to match the back end data structure to use in HandleSubmit
+    const adjustedFormData = {
+      name: formData.name,
+      startTime: formData.startTime.toString(),
+      endTime: formData.endTime.toString(),
+      category: formData.category,
+      venue: formData.venue,
+      address: {
+        street: formData.street,
+        city: formData.city,
+        state: formData.state,
+        country: formData.country,
+        zipCode: formData.zipCode
+      },
+      _id: scheduleItem._id
+    }
     // call the service function to update the item
     tripService.updateScheduleItem(tripId, scheduleItem._id, adjustedFormData)
-    const updatedSchedule = schedule.map(item => (
-      item._id === scheduleItem._id ? adjustedFormData : item
-    ))
-    setSchedule(updatedSchedule)
+    // find the day of the updated schedule
+    const scheduleDay = schedule.find(day => 
+      new Date(day.date).toLocaleDateString() === new Date(adjustedFormData.startTime).toLocaleDateString()
+    )
+    const updatedScheduleDay = {
+      date: scheduleDay.date,
+      scheduleItems: [...scheduleDay.scheduleItems.filter(item => item._id !== adjustedFormData._id), adjustedFormData].sort((a, b) => {
+        return new Date(a.startTime).valueOf() - new Date(b.startTime).valueOf()
+      }),
+      _id: scheduleDay._id
+    }
+    const filteredSchedule = schedule.filter(day => {
+      return new Date(day.date).toLocaleDateString() !== new Date(updatedScheduleDay.date).toLocaleDateString()
+    })
+    setSchedule([...filteredSchedule, updatedScheduleDay].sort((a, b) => {
+      return new Date(a.date).valueOf() - new Date(b.date).valueOf()
+    }))
+    // hide the edit form
     setShowEditForm(!showEditForm)
   }
 

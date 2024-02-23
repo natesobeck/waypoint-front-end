@@ -17,9 +17,8 @@ const ScheduleDay = ({ day, handleDeleteItem, tripId, setSchedule, schedule }) =
         }
       )}</h1>
       <div className={styles['day-container']}>
-        {day.scheduleItems.map(item => (
-          <ScheduleItem 
-            key={item._id} 
+        {day.scheduleItems.map((item, i)=> (<ScheduleItem 
+            key={i} 
             scheduleItem={item} 
             handleDeleteItem={handleDeleteItem}
             tripId={tripId}

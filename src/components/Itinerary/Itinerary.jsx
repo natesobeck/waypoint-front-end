@@ -67,7 +67,6 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
       const filteredSchedule = schedule.filter(day => {
         return new Date(day.date).toLocaleDateString() !== new Date(updatedScheduleDay.date).toLocaleDateString()
       })
-      console.log(filteredSchedule)
       setSchedule([...filteredSchedule, updatedScheduleDay].sort((a, b) => {
         return new Date(a.date).valueOf() - new Date(b.date).valueOf()
       }))
@@ -103,7 +102,15 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
     const filteredSchedule = schedule.filter(day => {
       return day._id !== newDay._id
     })
-    setSchedule(newDay.scheduleItems.length ? [...filteredSchedule, newDay] : [...filteredSchedule])
+    setSchedule(
+      newDay.scheduleItems.length 
+      ? [...filteredSchedule, newDay].sort((a, b) => {
+        return new Date(a.date).valueOf() - new Date(b.date).valueOf()
+      })
+      : [...filteredSchedule].sort((a, b) => {
+        return new Date(a.date).valueOf() - new Date(b.date).valueOf()
+      })
+    )
   }
 
   return (
@@ -218,7 +225,7 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
         </form>}
       {
       <div>
-        {schedule.filter(day => day.scheduleItems.length).length
+        {schedule.filter(day => day?.scheduleItems.length)
           ? schedule
             .filter(day => 
               day.scheduleItems.length

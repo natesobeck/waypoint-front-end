@@ -15,8 +15,14 @@
 .list-item-container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   border-bottom: 1px solid rgba(0, 0, 0, .1);
   width: 95%;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
 }
 
 .list-item {
@@ -129,4 +135,23 @@ input[type="checkbox"] {
   border-bottom: 1px solid rgba(0, 0, 0, .1);
   width: 95%;
   font-size: 1em;
+}
+
+.delete-btn {
+  margin-right: 15px;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  padding: 1px 3px;
+  border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.delete-icon {
+  font-size: 2em;
+  fill: rgba(0, 0, 0, .3);
+}
+
+.delete-btn:hover {
+  cursor: pointer;
+  border: 1px solid rgba(209, 26, 42, .5);
+  background-color: rgba(209, 26, 42, .2)
 }

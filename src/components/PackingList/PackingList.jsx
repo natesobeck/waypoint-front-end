@@ -3,6 +3,7 @@ import styles from './PackingList.module.css'
 
 // components
 import { IoIosAddCircleOutline } from 'react-icons/io'
+import { MdOutlineDelete } from "react-icons/md"
 
 // npm modules
 import { useState } from 'react'
@@ -68,14 +69,16 @@ const PackingList = ({ trip, packingList, setPackingList }) => {
         <h1 className={styles.header}>My List</h1>
         {packingList.length 
           ? packingList.map(item => (
-              <div className={styles['list-item-container']} key={item.name}>
-                <input type="checkbox" className={styles.checkbox} onClick={() => handleUpdateListItem(item._id)} defaultChecked={item.packed ? true : false}/>
-                <p className={styles['list-item']}>{item.name}</p>
+              <div className={styles['list-item-container']} key={item._id}>
+                <div className={styles['checkbox-container']}>
+                  <input type="checkbox" className={styles.checkbox} onClick={() => handleUpdateListItem(item._id)} defaultChecked={item.packed ? true : false}/>
+                  <p className={styles['list-item']}>{item.name}</p>
+                </div>
+                <button className={styles['delete-btn']}><MdOutlineDelete className={styles['delete-icon']}/></button>
               </div>
             ))
           : <h3 className={styles.message}>Nothing here yet!</h3>
-        } 
-          
+        }
       </div>
     </div> 
   )

@@ -51,10 +51,10 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
     }
   }
 
-  const handleSubmit = evt => {
+  const handleSubmit = async evt => {
     evt.preventDefault()
-    tripService.createScheduleItem(adjustedFormData, trip._id)
-    const scheduleDay = schedule.find(day => 
+    const newTrip = await tripService.createScheduleItem(adjustedFormData, trip._id)
+    const scheduleDay = newTrip.schedule.find(day => 
       new Date(day.date).toLocaleDateString() === new Date(adjustedFormData.startTime).toLocaleDateString()
     )
     if (scheduleDay) {
@@ -64,7 +64,7 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
           return new Date(a.startTime).valueOf() - new Date(b.startTime).valueOf()
         })
       }
-      const filteredSchedule = schedule.filter(day => {
+      const filteredSchedule = newTrip.schedule.filter(day => {
         return new Date(day.date).toLocaleDateString() !== new Date(updatedScheduleDay.date).toLocaleDateString()
       })
       setSchedule([...filteredSchedule, updatedScheduleDay].sort((a, b) => {
@@ -87,7 +87,8 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
   }
 
   const handleDeleteItem = async (scheduleItem) => {
-    tripService.deleteScheduleItem(trip._id, scheduleItem._id)
+    const updatedTrip = tripService.deleteScheduleItem(trip._id, scheduleItem._id)
+    console.log(updatedTrip)
     const day = schedule.find(day => {
       return new Date(day.date).toLocaleDateString() === new Date(scheduleItem.startTime).toLocaleDateString()
     })

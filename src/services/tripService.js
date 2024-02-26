@@ -153,6 +153,20 @@ async function updatePackingListItem(tripId, itemId) {
   }
 }
 
+async function deletePackingListItem(tripId, itemId) {
+  try {
+    const res = await fetch(`${BASE_URL}/${tripId}/packinglist/${itemId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`
+      }
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export {
   // trips
   index,
@@ -168,5 +182,6 @@ export {
 
   // packing list
   createPackingListItem,
-  updatePackingListItem
+  updatePackingListItem,
+  deletePackingListItem
 }

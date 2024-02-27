@@ -41,9 +41,9 @@ const PackingList = ({ trip, packingList, setPackingList }) => {
     setPackingList(newList)
   }
 
-  const handleDeleteListItem = (itemId) => {
-    tripService.deletePackingListItem(trip._id, itemId)
-    const newList = packingList.filter(item => item._id !== itemId)
+  const handleDeleteListItem = async (itemId) => {
+    const newTrip = await tripService.deletePackingListItem(trip._id, itemId)
+    const newList = newTrip.packingList.filter(item => item._id !== itemId)
     setPackingList(newList)
   }
 

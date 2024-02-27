@@ -17,13 +17,18 @@ const TripDetails = () => {
   const [trip, setTrip] = useState(null)
   const [showSchedule, setShowSchedule] = useState(false)
   const [showPackingList, setShowPackingList] = useState(false)
+  const [showExpenses, setShowExpenses] = useState(false)
   const [schedule, setSchedule] = useState(null)
   const [packingList, setPackingList] = useState(null)
+  const [expenses, setExpenses] = useState(null)
 
   const handleShowSchedule = (evt) => {
     handleActiveSelection(evt)
     if (showPackingList) {
       setShowPackingList(!showPackingList)
+    }
+    if (showExpenses) {
+      setShowExpenses(!showExpenses)
     }
     setShowSchedule(!showSchedule)
   }
@@ -33,7 +38,21 @@ const TripDetails = () => {
     if (showSchedule) {
       setShowSchedule(!showSchedule)
     }
+    if (showExpenses) {
+      setShowExpenses(!showExpenses)
+    }
     setShowPackingList(!showPackingList)
+  }
+
+  const handleShowExpenses = (evt) => {
+    handleActiveSelection(evt)
+    if (showSchedule) {
+      setShowSchedule(!showSchedule)
+    }
+    if (showPackingList) {
+      setShowPackingList(!showPackingList)
+    }
+    setShowExpenses(!showExpenses)
   }
 
   const handleActiveSelection = (evt) => {
@@ -61,6 +80,7 @@ const TripDetails = () => {
       })
       setSchedule(sortedSchedule)
       setPackingList(tripData.packingList)
+      setExpenses(tripData.expenses)
     }
     fetchTrip()
   }, [tripId])
@@ -79,12 +99,46 @@ const TripDetails = () => {
       <h3>Your details for your trip to {trip.destination.city}, {trip.destination.state.length ? `${trip.destination.state}, ` : '' }{trip.destination.country}</h3>
       <h4>You leave on {departureDate.toLocaleDateString()} and return on {returnDate.toLocaleDateString()} ({(duration + 1).toFixed()} {duration === 0 ? 'day' : 'days'})</h4>
       <div className={styles['btn-container']}>
-        <button onClick={handleShowSchedule} className={`${styles.btn} ${styles['schedule-btn']} ${styles['main-btn']}`}>My Schedule</button>
-        <button  className={`${styles.btn} ${styles['expenses-btn']} ${styles['main-btn']}`} onClick={handleActiveSelection}>My Expenses</button>
-        <button  className={`${styles.btn} ${styles['packing-list-btn']} ${styles['main-btn']}`} onClick={handleShowPackingList}>My Packing List</button>
+        <button 
+          onClick={handleShowSchedule} 
+          className={`${styles.btn} ${styles['schedule-btn']} ${styles['main-btn']}`}
+        >
+          My Schedule
+        </button>
+        <button 
+          onClick={handleShowExpenses}
+          className={`${styles.btn} ${styles['expenses-btn']} ${styles['main-btn']}`} 
+        >
+          My Expenses
+        </button>
+        <button
+          onClick={handleShowPackingList}
+          className={`${styles.btn} ${styles['packing-list-btn']} ${styles['main-btn']}`} 
+        >
+          My Packing List
+        </button>
       </div>
-      {showSchedule && <Itinerary trip={trip} setTrip={setTrip} schedule={schedule} setSchedule={setSchedule}/>}
-      {showPackingList && <PackingList trip={trip} setTrip={setTrip} packingList={packingList} setPackingList={setPackingList} showPackingList={showPackingList}/>}
+
+      {showSchedule && 
+      <Itinerary 
+        trip={trip} 
+        setTrip={setTrip} 
+        schedule={schedule} 
+        setSchedule={setSchedule}
+      />}
+
+      {showPackingList && 
+      <PackingList 
+        trip={trip} 
+        setTrip={setTrip} 
+        packingList={packingList} 
+        setPackingList={setPackingList} 
+        showPackingList={showPackingList}
+      />}
+
+      {showExpenses &&
+      <h1>These are the expenses</h1>
+      }
     </main>
   )
 }

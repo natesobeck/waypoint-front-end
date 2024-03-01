@@ -17,7 +17,41 @@
   font-size: 1.2em;
 }
 
-.add-expense-btn:hover {
+.add-expense-btn:hover,
+.create-expense-btn:hover {
   cursor: pointer;
   background-color: #1d80d2;
+}
+
+.form {
+  margin-top: 30px;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  font-size: 1em;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, .8);
+  filter: drop-shadow(5px 5px rgba(0, 0, 0, .1));
+  border-radius: 10px;
+  color: rgba(0, 0, 0, .8)
+}
+
+.form input, .form select {
+  margin: 5px 0px;
+  width: 280px;
+}
+.form select {
+  padding: 3px;
+}
+
+.create-expense-btn {
+  border-radius: 0;
+  border: none;
+  background-color: #2196f3;
+  padding: 10px 0px;
+  font-size: 1em;
+  border-radius: 3px;
+  color: white;
+  font-weight: 500;
 }

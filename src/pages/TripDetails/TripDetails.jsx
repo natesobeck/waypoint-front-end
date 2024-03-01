@@ -8,6 +8,7 @@ import * as tripService from '../../services/tripService'
 // components
 import Itinerary from "../../components/Itinerary/Itinerary"
 import PackingList from "../../components/PackingList/PackingList"
+import ExpenseList from "../../components/ExpenseList/ExpenseList"
 
 // css
 import styles from './TripDetails.module.css'
@@ -85,6 +86,8 @@ const TripDetails = () => {
     fetchTrip()
   }, [tripId])
 
+  console.log(expenses)
+
   if (!trip) return (<h1>Loading...</h1>)
 
   const departureDate = new Date(trip.departureDate)
@@ -130,14 +133,17 @@ const TripDetails = () => {
       {showPackingList && 
       <PackingList 
         trip={trip} 
-        setTrip={setTrip} 
         packingList={packingList} 
         setPackingList={setPackingList} 
-        showPackingList={showPackingList}
       />}
 
       {showExpenses &&
-      <h1>These are the expenses</h1>
+      <ExpenseList 
+        trip={trip}
+        setTrip={setTrip}
+        expenses={expenses}
+        setExpenses={setExpenses}
+      />
       }
     </main>
   )

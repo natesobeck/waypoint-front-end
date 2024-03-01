@@ -1,0 +1,23 @@
+.icon {
+  font-size: 1.5em;
+  margin-left: 5px;
+}
+
+.btn-text-icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.add-expense-btn {
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  background-color: #2196f3;
+  color: white;
+  font-size: 1.2em;
+}
+
+.add-expense-btn:hover {
+  cursor: pointer;
+  background-color: #1d80d2;
+}

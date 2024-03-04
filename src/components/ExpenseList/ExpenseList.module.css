@@ -27,20 +27,26 @@
   margin-top: 30px;
   padding: 20px;
   width: 100%;
-  max-width: 500px;
+  max-width: 350px;
   font-size: 1em;
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: rgba(255, 255, 255, .8);
   filter: drop-shadow(5px 5px rgba(0, 0, 0, .1));
   border-radius: 10px;
   color: rgba(0, 0, 0, .8)
 }
 
-.form input, .form select {
+.form input, .form select, .form textarea {
   margin: 5px 0px;
   width: 280px;
 }
+
+.form textarea {
+  padding: 3px;
+}
+
 .form select {
   padding: 3px;
 }
@@ -54,4 +60,5 @@
   border-radius: 3px;
   color: white;
   font-weight: 500;
+  width: 90%;
 }

@@ -86,8 +86,6 @@ const TripDetails = () => {
     fetchTrip()
   }, [tripId])
 
-  console.log(expenses)
-
   if (!trip) return (<h1>Loading...</h1>)
 
   const departureDate = new Date(trip.departureDate)
@@ -140,7 +138,6 @@ const TripDetails = () => {
       {showExpenses &&
       <ExpenseList 
         trip={trip}
-        setTrip={setTrip}
         expenses={expenses}
         setExpenses={setExpenses}
       />

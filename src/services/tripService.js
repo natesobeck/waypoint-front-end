@@ -139,6 +139,20 @@ async function createExpense(formData, tripId) {
   }
 }
 
+async function deleteExpense(tripId, expenseId) {
+  try {
+    const res = await fetch(`${BASE_URL}/${tripId}/expenses/${expenseId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+      },
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 // packing list
 
 async function createPackingListItem(formData, tripId) {
@@ -200,6 +214,7 @@ export {
 
   //expenses
   createExpense,
+  deleteExpense,
 
   // packing list
   createPackingListItem,

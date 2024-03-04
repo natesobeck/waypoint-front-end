@@ -1,5 +1,5 @@
 // npm modules
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 // components
 import { IoIosAddCircleOutline } from 'react-icons/io'
@@ -20,6 +20,7 @@ const ExpenseList = ({ trip, expenses, setExpenses }) => {
     cost: '',
     note: ''
   })
+  const [totalExpense, setTotalExpense] = useState(null)
 
   const handleChange = evt => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value})
@@ -31,9 +32,21 @@ const ExpenseList = ({ trip, expenses, setExpenses }) => {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault()
-    const newExpense = await tripService.createExpense(formData, trip._id)
-    setExpenses([...expenses, newExpense])
+    const newExpenses = await tripService.createExpense(formData, trip._id)
+    setExpenses([...newExpenses])
   }
+
+  
+
+  useEffect(() => {
+    function getTotalExpense(expenses) {
+      const total = expenses.reduce((totalExpenses, currentExpense) => {
+        return totalExpenses + currentExpense.cost
+      }, 0)
+      return total
+    }
+    setTotalExpense(getTotalExpense(expenses))
+  }, [expenses])
 
   return (  
     <div className={styles.container}>
@@ -103,13 +116,18 @@ const ExpenseList = ({ trip, expenses, setExpenses }) => {
           <button className={styles['create-expense-btn']}>Create Expense</button>
         </form>
       }
+      <h2 className={styles['total-message']}>Total trip cost: <span className={styles.total}>${totalExpense}</span></h2>
       {expenses
-        ? expenses.map(expense => (
-          <ExpenseCard 
-            key={expense._id}
-            expense={expense}
-          />
-        ))
+        ? <div 
+            className={styles['expense-list-container']}
+          >
+            {expenses.map(expense => (
+            <ExpenseCard 
+              expense={expense}
+              key={expense._id}
+            />
+            ))}
+          </div>
         : <h3>You don't have any expenses here yet!</h3>
       }
     </div>

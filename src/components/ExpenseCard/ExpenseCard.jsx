@@ -1,9 +1,22 @@
 // css
 import styles from './ExpenseCard.module.css'
 
-const ExpenseCard = () => {
+// components
+import CategoryIcon from '../CategoryIcon/CategoryIcons'
+
+const ExpenseCard = ({ expense }) => {
   return (  
-    <h1 className={styles.test}>This is an expense card</h1>
+    <div className={styles.card}>
+      <div className={styles['expense-category-pair']}>
+        <h3 className={styles.expense}>{expense.expense}</h3>
+        <CategoryIcon category={expense.category} />
+      </div>
+      {expense.location &&
+      <p className={styles.location}>{expense.location}</p>}
+      {expense.note &&
+      <p className={styles.note}>{expense.note}</p>}
+      <p className={styles.cost}>${expense.cost}</p>
+    </div>
   )
 }
 

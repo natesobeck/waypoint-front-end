@@ -12,7 +12,9 @@ import styles from './ExpenseList.module.css'
 import * as tripService from '../../services/tripService'
 
 const ExpenseList = ({ trip, expenses, setExpenses }) => {
+
   const [showAddExpense, setShowAddExpense] = useState(false)
+
   const [formData, setFormData] = useState({
     expense: '',
     location: '',
@@ -20,6 +22,7 @@ const ExpenseList = ({ trip, expenses, setExpenses }) => {
     cost: '',
     note: ''
   })
+
   const [totalExpense, setTotalExpense] = useState(null)
 
   const handleChange = evt => {

@@ -131,8 +131,7 @@ async function createExpense(formData, tripId) {
         'Authorization': `Bearer ${tokenService.getToken()}`,
         'Content-Type': 'application/json'
       },
-
-      
+      body: JSON.stringify(formData)
     })
     return res.json()
   } catch (error) {

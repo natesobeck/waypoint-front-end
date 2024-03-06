@@ -102,3 +102,39 @@
   justify-content: space-between;
 }
 
+.form {
+  margin-top: 30px;
+  padding: 20px;
+  width: 100%;
+  max-width: 350px;
+  font-size: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(0, 0, 0, .8)
+}
+
+.form input, .form select, .form textarea {
+  margin: 5px 0px;
+  width: 250px;
+}
+
+.form textarea {
+  padding: 3px;
+}
+
+.form select {
+  padding: 3px;
+}
+
+.update-expense-btn {
+  border-radius: 0;
+  border: none;
+  background-color: #2196f3;
+  padding: 10px 0px;
+  font-size: 1em;
+  border-radius: 3px;
+  color: white;
+  font-weight: 500;
+  width: 250px;
+}

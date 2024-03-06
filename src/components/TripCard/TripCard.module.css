@@ -2,13 +2,21 @@
   width: 100%;
   max-width: 900px;
   background-color: white;
-  padding: 10px 20px;
+  padding: 20px 40px;
   filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, .1));
   border-radius: 5px;
   border: 1px solid #2196f380;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.card-container:first-of-type {
+  margin-top: 30px;
+}
+
+.card-container:last-of-type {
+  margin-bottom: 30px;
 }
 
 .info-container {
@@ -34,8 +42,8 @@
 
 .image {
   border: 1px solid black;
-  height: 250px;
-  width: 250px;
+  height: 220px;
+  width: 220px;
   border: none;
   background-position: center;
   background-size: cover;

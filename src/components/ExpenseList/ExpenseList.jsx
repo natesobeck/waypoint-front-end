@@ -118,7 +118,7 @@ const ExpenseList = ({ trip, expenses, setExpenses }) => {
         </form>
       }
       <h2 className={styles['total-message']}>Total trip cost: <span className={styles.total}>${totalExpense}</span></h2>
-      {expenses
+      {expenses.length
         ? <div 
             className={styles['expense-list-container']}
           >
@@ -132,7 +132,7 @@ const ExpenseList = ({ trip, expenses, setExpenses }) => {
             />
             ))}
           </div>
-        : <h3>You don't have any expenses here yet!</h3>
+        : <h3 className={styles.empty}>You don't have any expenses here yet!</h3>
       }
     </div>
   )

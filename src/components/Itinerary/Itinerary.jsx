@@ -223,7 +223,7 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
         </form>}
       {
       <div>
-        {schedule.filter(day => day?.scheduleItems.length)
+        {schedule.filter(day => day.scheduleItems.length).length
           ? schedule
             .filter(day => 
               day.scheduleItems.length
@@ -239,7 +239,7 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
                 schedule={schedule}
               />
             ))
-          : <p>Theres nothing in your schedule yet! Add something.</p>
+          : <h3 className={styles.empty}>Theres nothing in your schedule yet! Add something.</h3>
         }
       </div>
       }

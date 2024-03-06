@@ -46,15 +46,16 @@
   background-image: url(/images/details-banner.jpg);
   background-size: cover;
   background-position: center;
-  background-color:rgba(255, 255, 255, .5);
+  background-color:rgba(255, 255, 255, .4);
   background-blend-mode: color;
   font-family: 'Pacifico', cursive;
-  font-size: 3.2em;
-  color: #333;
+  font-size: 3.5em;
+  color: rgba(25, 25, 25, .85);
   padding-top: 50px;
   margin: 0;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  text-align: center;
 }
 
 .details {

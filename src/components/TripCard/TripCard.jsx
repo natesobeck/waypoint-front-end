@@ -13,7 +13,7 @@ const TripCard = ({ trip, handleDeleteTrip }) => {
       <div className={styles['info-container']}>
         <h1><Link to={`/trips/${trip._id}`} className={`${styles.link} ${styles['card-header']}`}>{trip.name}</Link></h1>
         <h3 className={styles.destination}>To {trip.destination.city}, {trip.destination.state ? `${trip.destination.state}, ` : ''}{trip.destination.country}</h3>
-        <p>You leave on  {departureDate} and return on {returnDate}</p>
+        <p>{departureDate} - {returnDate}</p>
       </div>
       <div className={styles['btn-container']}>
         <button className={styles.btn}><Link to={`/trips/${trip._id}`} className={styles.link}>View Details</Link></button>

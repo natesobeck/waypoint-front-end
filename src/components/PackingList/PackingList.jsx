@@ -33,9 +33,6 @@ const PackingList = ({ trip, packingList, setPackingList }) => {
 
   const handleUpdateListItem = async (itemId) => {
     const newItem = await tripService.updatePackingListItem(trip._id, itemId)
-
-    // const newItem = newTrip.packingList.find(item => item._id === itemId)
-    // newItem.packed = !newItem.packed
     const newList = trip.packingList.map(item => (
       item._id !== itemId ? item : newItem
     ))
@@ -59,7 +56,7 @@ const PackingList = ({ trip, packingList, setPackingList }) => {
   }, [setPackingList, trip._id])
 
   return (
-    <div> 
+    <div className={styles.container}> 
       {!showAddPackingListItem && 
         <button 
           onClick={handleShowAddPackingListItem}

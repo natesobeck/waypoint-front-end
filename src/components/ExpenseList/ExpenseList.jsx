@@ -36,8 +36,6 @@ const ExpenseList = ({ trip, expenses, setExpenses }) => {
     setExpenses([...newExpenses])
   }
 
-  
-
   useEffect(() => {
     function getTotalExpense(expenses) {
       const total = expenses.reduce((totalExpenses, currentExpense) => {
@@ -125,6 +123,9 @@ const ExpenseList = ({ trip, expenses, setExpenses }) => {
             <ExpenseCard 
               expense={expense}
               key={expense._id}
+              expenses={expenses}
+              setExpenses={setExpenses}
+              tripId={trip._id}
             />
             ))}
           </div>

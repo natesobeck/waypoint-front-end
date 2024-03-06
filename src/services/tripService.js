@@ -131,7 +131,8 @@ async function createExpense(formData, tripId) {
         'Authorization': `Bearer ${tokenService.getToken()}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(formData)
+
+      
     })
     return res.json()
   } catch (error) {
@@ -146,6 +147,22 @@ async function deleteExpense(tripId, expenseId) {
       headers: {
         'Authorization': `Bearer ${tokenService.getToken()}`,
       },
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+async function updateExpense(tripId, expenseId, formData) {
+  try {
+    const res = await fetch(`${BASE_URL}/${tripId}/expenses/${expenseId}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
     })
     return res.json()
   } catch (error) {
@@ -215,6 +232,7 @@ export {
   //expenses
   createExpense,
   deleteExpense,
+  updateExpense,
 
   // packing list
   createPackingListItem,

@@ -3,6 +3,8 @@ import styles from './ExpenseCard.module.css'
 
 // components
 import CategoryIcon from '../CategoryIcon/CategoryIcons'
+import { MdDelete } from "react-icons/md"
+import { MdEdit } from "react-icons/md";
 
 const ExpenseCard = ({ expense }) => {
   return (  
@@ -15,7 +17,13 @@ const ExpenseCard = ({ expense }) => {
       <p className={styles.location}>{expense.location}</p>}
       {expense.note &&
       <p className={styles.note}>{expense.note}</p>}
-      <p className={styles.cost}>${expense.cost}</p>
+      <div className={styles['footer-container']}>
+        <div className={styles['btn-container']}>
+          <button className={`${styles['delete-btn']} ${styles.btn}`}><MdDelete className={styles['delete-icon']}/></button>
+          <button className={`${styles['edit-btn']} ${styles.btn}`}><MdEdit className={styles['edit-icon']}/></button>
+        </div>
+        <p className={styles.cost}>${expense.cost}</p>
+      </div>
     </div>
   )
 }

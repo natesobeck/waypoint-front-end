@@ -19,7 +19,8 @@ body {
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
-  color: rgba(5, 5, 5, .85);
+  color: #333;
+  background-color: whitesmoke;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -38,7 +39,7 @@ body {
 }
 
 main {
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 390px);
 }
 
 .main-nav {
@@ -63,7 +64,7 @@ main {
 .main-nav a {
   padding: .5em;
   text-decoration: none;
-  color: black;
+  color: #222;
   transition: background-color 250ms ease-in-out;
   height: 100%;
   width: 100%;
@@ -79,6 +80,7 @@ main {
   font-size: 8em;
   margin: 0 0 10px 0;
   font-family: 'Pacifico', cursive;
+  color: rgba(5, 5, 5, .85)
 }
 
 .subtitle {

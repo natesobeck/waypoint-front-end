@@ -23,10 +23,15 @@
 .footer a {
   padding: .5em;
   text-decoration: none;
-  color: black;
+  color: #333;
+  display: flex;
 }
 
 .footer a:hover {
   background-color: rgba(0, 0, 0, .1);
   cursor: pointer;
+}
+
+.icon {
+  font-size: 1.4em;
 }

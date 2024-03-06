@@ -1,10 +1,16 @@
 .container {
+  margin: 20px;
+  border: 1px solid rgba(0, 0, 0, .1);
   padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(235, 235, 235)
 }
 
 .btn-container {
   display: flex;
   gap: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  padding-bottom: 20px;
 }
 
 .btn {
@@ -13,6 +19,7 @@
   padding: 30px;
   transition: background-color 250ms ease-in-out;
   border: none;
+  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, .1));
 }
 
 .schedule-btn, .expenses-btn, .packing-list-btn {
@@ -32,4 +39,35 @@
 
 .active {
   background: gray;
+}
+
+.title {
+  padding: 50px 20px;
+  background-image: url(/images/details-banner.jpg);
+  background-size: cover;
+  background-position: center;
+  background-color:rgba(255, 255, 255, .5);
+  background-blend-mode: color;
+  font-family: 'Pacifico', cursive;
+  font-size: 3.2em;
+  color: #333;
+  padding-top: 50px;
+  margin: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.details {
+  font-weight: 500;
+}
+
+.details:first-of-type {
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, .05)
+}
+
+.bold {
+  font-weight: bold;
+  color: rgba(104,94,201,1);
+  font-size: 1.1em;
 }

@@ -8,7 +8,7 @@
   align-items: center;
   flex-direction: column;
   background-color: rgba(255, 255, 200);
-  filter: drop-shadow(5px 5px rgba(0, 0, 0, .1));
+  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, .1));
   color: rgba(0, 0, 0, .8)
 }
 
@@ -51,6 +51,7 @@ input[type="checkbox"] {
   background-color: #2196f3;
   color: white;
   font-size: 1.2em;
+  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, .1));
 }
 
 .add-list-item-btn:hover {
@@ -89,7 +90,7 @@ input[type="checkbox"] {
   display: flex;
   padding: 20px 10px 10px 10px;
   background-color: rgba(255, 255, 255, .8);
-  filter: drop-shadow(5px 5px rgba(0, 0, 0, .1));
+  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, .1));
   max-width: 500px;
   margin: 10px 0px;
   align-items: center;

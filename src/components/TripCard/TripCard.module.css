@@ -3,7 +3,7 @@
   max-width: 900px;
   background-color: white;
   padding: 10px 20px;
-  filter: drop-shadow(8px 6px rgba(0, 0, 0, .1));
+  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, .1));
   border-radius: 5px;
   border: 1px solid #2196f380;
   display: flex;

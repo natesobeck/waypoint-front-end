@@ -15,6 +15,7 @@
   background-color: #2196f3;
   color: white;
   font-size: 1.2em;
+  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, .1));
 }
 
 .add-expense-btn:hover,
@@ -33,7 +34,7 @@
   flex-direction: column;
   align-items: center;
   background-color: rgba(255, 255, 255, .8);
-  filter: drop-shadow(5px 5px rgba(0, 0, 0, .1));
+  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, .1));
   border-radius: 10px;
   color: rgba(0, 0, 0, .8)
 }
@@ -65,7 +66,6 @@
 
 .expense-list-container {
   padding: 10px 15px;
-  background-color: rgba(0, 0, 0, .025);
 }
 
 .total {
@@ -79,5 +79,5 @@
   border-top: 1px solid rgba(0, 0, 0, .1);
   padding: 15px;
   margin: 10px 0 0 0;
-  background-color: rgba(0, 0, 0, .025);
+  background-image: linear-gradient(90deg, rgba(33,150,243,0.2) 0%, rgba(33,150,243,0.1) 50%, rgba(33,150,243,0) 100%);
 }

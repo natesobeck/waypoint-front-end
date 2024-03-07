@@ -53,31 +53,21 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
 
   const handleSubmit = async evt => {
     evt.preventDefault()
-    const newTrip = await tripService.createScheduleItem(adjustedFormData, trip._id)
-    const scheduleDay = newTrip.schedule.find(day => 
-      new Date(day.date).toLocaleDateString() === new Date(adjustedFormData.startTime).toLocaleDateString()
-    )
-    if (scheduleDay) {
-      const updatedScheduleDay = {
-        date: scheduleDay.date,
-        scheduleItems: [...scheduleDay.scheduleItems, adjustedFormData].sort((a, b) => {
-          return new Date(a.startTime).valueOf() - new Date(b.startTime).valueOf()
-        })
-      }
-      const filteredSchedule = newTrip.schedule.filter(day => {
-        return new Date(day.date).toLocaleDateString() !== new Date(updatedScheduleDay.date).toLocaleDateString()
-      })
-      setSchedule([...filteredSchedule, updatedScheduleDay].sort((a, b) => {
+    const scheduleDay = await tripService.createScheduleItem(adjustedFormData, trip._id)
+    if (scheduleDay.scheduleItems.length === 1) {
+      const newSchedule = [...schedule, scheduleDay].sort((a, b) => {
         return new Date(a.date).valueOf() - new Date(b.date).valueOf()
-      }))
+      }).filter(day => day.scheduleItems.length)
+      console.log(newSchedule)
+      setSchedule(newSchedule)
     } else {
-      const newScheduleDay = {
-        date: adjustedFormData.startTime,
-        scheduleItems: [adjustedFormData]
-      }
-      setSchedule([...schedule, newScheduleDay].sort((a, b) => {
-        return new Date(a.date).valueOf() - new Date(b.date).valueOf()
-      }))
+      const newSchedule = schedule.map(day => 
+        day._id === scheduleDay._id
+        ? scheduleDay
+        : day
+      ).filter(day => day.scheduleItems.length)
+      console.log(newSchedule)
+      setSchedule(newSchedule)
     }
     navigate(`/trips/${trip._id}`)
   }
@@ -115,7 +105,7 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
   }
 
   return (
-    <>
+    <div className={styles.container}>
       {! showAddScheduleItem && 
         <button 
           onClick={handleShowAddScheduleItem} 
@@ -127,6 +117,7 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
         </button>
       }
       {showAddScheduleItem &&
+      <div className={styles['form-container']}>
         <form onSubmit={handleSubmit} className={styles.form}>
           <h3 className={styles.subtitle}>Add to My Schedule</h3>
           <div className={styles['form-label-input-container']}>
@@ -220,7 +211,8 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
             </div>
           </div>
           <button type="submit" className={styles['create-schedule-btn']}>Create Schedule Item</button>
-        </form>}
+        </form>
+      </div>}
       {
       <div>
         {schedule.filter(day => day.scheduleItems.length).length
@@ -243,7 +235,7 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
         }
       </div>
       }
-    </>
+    </div>
   )
 }
 

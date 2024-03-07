@@ -1,5 +1,7 @@
 .container {
-  margin-top: 20px;
+  background-color: rgb(225, 225, 225);
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .list-container {
@@ -49,7 +51,7 @@ input[type="checkbox"] {
 
 .add-list-item-btn {
   padding: 10px;
-  margin-top: 20px;
+  margin-bottom: 20px;
   border: none;
   background-color: #2196f3;
   color: white;

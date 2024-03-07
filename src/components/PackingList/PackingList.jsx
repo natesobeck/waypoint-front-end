@@ -62,7 +62,7 @@ const PackingList = ({ trip, packingList, setPackingList }) => {
           onClick={handleShowAddPackingListItem}
           className={styles['add-list-item-btn']}>
             <div className={styles['btn-text-icon-container']}>
-              <div>Add to my List</div>
+              <div>Add to List</div>
               <IoIosAddCircleOutline className={styles.icon}/>
             </div>
         </button>

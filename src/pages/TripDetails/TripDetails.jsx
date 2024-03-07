@@ -16,7 +16,7 @@ import styles from './TripDetails.module.css'
 const TripDetails = () => {
   const { tripId } = useParams()
   const [trip, setTrip] = useState(null)
-  const [showSchedule, setShowSchedule] = useState(false)
+  const [showSchedule, setShowSchedule] = useState(true)
   const [showPackingList, setShowPackingList] = useState(false)
   const [showExpenses, setShowExpenses] = useState(false)
   const [schedule, setSchedule] = useState(null)
@@ -97,26 +97,34 @@ const TripDetails = () => {
   return (  
     <main className={styles.container}>
       <h1 className={styles.title}>{trip.name}</h1>
-      <h3 className={styles.details}>Your details for your trip to <span className={styles.bold}>{trip.destination.city}, {trip.destination.state.length ? `${trip.destination.state}, ` : '' }{trip.destination.country}</span></h3>
-      <h4 className={styles.details}>You leave on {departureDate.toLocaleDateString()} and return on {returnDate.toLocaleDateString()} <span className={styles.bold}>({(duration + 1).toFixed()} {duration === 0 ? 'day' : 'days'})</span></h4>
+      <div className={styles['details-container']}>
+        <h3 className={styles.destination}>
+          <span className={styles.bold}>{trip.destination.city}, {trip.destination.state.length ? `${trip.destination.state}, ` : '' }{trip.destination.country}</span>
+        </h3>
+        <h4 className={styles.details}>
+          <span className={styles.bold}>{departureDate.toLocaleDateString()}</span> - 
+          <span className={styles.bold}> {returnDate.toLocaleDateString()}</span> 
+          <span> ({(duration + 1).toFixed()} {duration === 0 ? 'day' : 'days'})</span>
+        </h4>
+      </div>
       <div className={styles['btn-container']}>
         <button 
           onClick={handleShowSchedule} 
-          className={`${styles.btn} ${styles['schedule-btn']} ${styles['main-btn']}`}
+          className={`${styles.btn} ${styles['schedule-btn']} ${styles['main-btn']} ${styles.active}`}
         >
-          My Schedule
+          Schedule
         </button>
         <button 
           onClick={handleShowExpenses}
           className={`${styles.btn} ${styles['expenses-btn']} ${styles['main-btn']}`} 
         >
-          My Expenses
+          Expenses
         </button>
         <button
           onClick={handleShowPackingList}
           className={`${styles.btn} ${styles['packing-list-btn']} ${styles['main-btn']}`} 
         >
-          My Packing List
+          Packing
         </button>
       </div>
 

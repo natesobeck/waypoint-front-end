@@ -1,14 +1,23 @@
 .container {
   background-image: linear-gradient(90deg, rgba(240,245,245) 0%, rgba(250,250,250) 50%, rgba(255,255,255) 100%);
-  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, .1));
-  border-radius: 10px;
+  filter: drop-shadow(12px 12px 3px rgba(0, 0, 0, .075));
   color: rgba(0, 0, 0, .8);
-  padding: 10px 15px;
-  margin: 10px 0px;
-  max-width: 470px;
+  padding: 20px;
   display: grid;
   align-items: center;
   grid-template-columns: 5fr 4fr 8fr;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.container:first-of-type {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.container:last-of-type {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .name {
@@ -17,23 +26,25 @@
 }
 
 .time {
-  font-weight: 500;
-  background-color: rgba(235, 235, 235);
-  padding: 10px 0px 10px 10px;
-  max-width: 160px;
+  font-weight: 600;
+  /* background-color: rgba(235, 235, 235); */
+  background-color: rgb(117, 238, 159, .6);
+  padding: 10px;
   border-radius: 10px;
   margin-right: 20px;
+  font-size: 1.2em;
+  text-align: center;
 }
 
 .schedule-content {
   height: 100%;
-  border-left: 1px solid rgba(0, 0, 0, .1);
+  /* border-left: 1px solid rgba(0, 0, 0, .1); */
   padding-left: 20px;
 }
 
 .btn-container {
   justify-self: flex-end;
-  border-left: 1px solid rgba(0, 0, 0, .1);
+  /* border-left: 1px solid rgba(0, 0, 0, .1); */
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -45,12 +56,12 @@
 
 .delete-icon {
   font-size: 2em;
-  fill: #D11A2A;
+  fill: rgb(209, 26, 42, .7);
 }
 
 .edit-icon {
   font-size: 2em;
-  fill: #008000;
+  fill:rgb(117, 238, 159, 1);
 }
 
 .btn {
@@ -59,15 +70,15 @@
   height: 40px;
   width: 40px;
   border-radius: 10px;
-  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, .1));
+  /* filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, .1)); */
 }
 
 .delete-btn {
-  border: 1px solid rgb(209, 26, 42);
+  border: 1px solid rgb(209, 26, 42, .7);
 }
 
 .edit-btn {
-  border: 1px solid rgb(0, 128, 0);
+  border: 1px solid rgb(117, 238, 159, .8);
 }
 
 .delete-btn:hover {
@@ -76,6 +87,6 @@
 }
 
 .edit-btn:hover {
-  background-color: rgba(0, 128, 0, .1);
+  background-color: rgb(117, 238, 159, .3);
   cursor: pointer;
 }

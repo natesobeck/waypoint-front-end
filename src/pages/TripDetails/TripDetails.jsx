@@ -31,7 +31,7 @@ const TripDetails = () => {
     if (showExpenses) {
       setShowExpenses(!showExpenses)
     }
-    setShowSchedule(!showSchedule)
+    setShowSchedule(true)
   }
 
   const handleShowPackingList = (evt) => {
@@ -61,8 +61,10 @@ const TripDetails = () => {
     buttons.forEach(button => {
       if (button === evt.target && !button.classList.contains(`${styles.active}`)) {
         button.classList.add(`${styles.active}`)
+        button.setAttribute('disabled', 'disabled')
       } else if (button.classList.contains(`${styles.active}`)) {
         button.classList.remove(`${styles.active}`)
+        button.removeAttribute('disabled')
       }
     })
   }

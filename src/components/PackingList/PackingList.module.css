@@ -1,5 +1,5 @@
 .container {
-  background-color: rgb(225, 225, 225);
+  border-top: 1px solid rgb(0, 0, 0, .2);
   padding: 20px;
   border-radius: 10px;
 }
@@ -98,6 +98,7 @@ input[type="checkbox"] {
   filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, .1));
   max-width: 500px;
   align-items: center;
+  justify-content: center;
   border-top: 1px solid rgba(0, 0, 0, .1);
   border-bottom: 1px solid rgba(0, 0, 0, .1);
 }

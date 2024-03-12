@@ -1,11 +1,13 @@
 // npm packages
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
 
 // css
 import styles from './ExpenseCard.module.css'
 
 // components
 import CategoryIcon from '../CategoryIcon/CategoryIcons'
+import EditExpenseForm from '../EditExpenseForm/EditExpenseForm.jsx'
 import { MdDelete } from "react-icons/md"
 import { MdEdit } from "react-icons/md"
 
@@ -64,57 +66,16 @@ const ExpenseCard = ({ expense, expenses, setExpenses, tripId }) => {
         <p className={styles.cost}>${expense.cost}</p>
       </div>
 
-      {showUpdate &&
-        <form 
-          onSubmit={handleSubmitUpdateExpense}
-          className={styles.form}
-        >
-          <h4>Update this Expense</h4>
-          <input 
-            type="text"
-            name="expense"
-            onChange={handleChange}
-            value={formData.expense}
-            placeholder="What expense are you adding? i.e. plane tickets"
-            required
-          />
-          <input 
-            type="number"
-            name="cost"
-            onChange={handleChange}
-            value={formData.cost}
-            placeholder="What did it cost?"
-            required
-          />
-          <input 
-            type="text"
-            name="location"
-            onChange={handleChange}
-            value={formData.location}
-            placeholder="Where did you pay it?"
-          />
-          <select
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-          >
-            <option value="" disabled >Select a Category</option>
-            <option value="food" default>Food</option>
-            <option value="lodging">Lodging</option>
-            <option value="activity">Activity</option>
-            <option value="transportation">Transportation</option>
-            <option value="entertainment">Entertainment</option>
-            <option value="miscellaneous">Miscellaneous</option>
-          </select>
-          <textarea
-            name="note"
-            onChange={handleChange}
-            value={formData.note}
-            placeholder="Additional note"
-          />
-          <button className={styles['update-expense-btn']}>Save</button>
-        </form>
-      }
+      {showUpdate && createPortal(
+        <EditExpenseForm 
+          handleSubmitUpdateExpense={handleSubmitUpdateExpense}
+          handleChange={handleChange}
+          setShowUpdate={setShowUpdate}
+          expense={expense}
+          formData={formData}
+        />,
+        document.body
+      )}
 
     </div>
   )

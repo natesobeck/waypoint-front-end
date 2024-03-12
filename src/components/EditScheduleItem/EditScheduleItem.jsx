@@ -77,7 +77,7 @@ const EditScheduleItem = ({ scheduleItem, tripId, setSchedule, schedule, setShow
 
   return (  
     <>
-      <div className={styles.overlay}></div>
+      <div className={styles.overlay} onClick={() => setShowEditForm(false)}></div>
       <form onSubmit={handleSubmit} className={styles.form}>
         <button onClick={() => setShowEditForm(false)} className={styles['hide-btn']}>
           <FiMinusCircle className={styles.icon}/>

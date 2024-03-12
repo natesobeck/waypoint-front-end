@@ -8,7 +8,7 @@ import { FiMinusCircle } from "react-icons/fi"
 const AddScheduleItemForm = ({ handleSubmit, formData, setFormData, handleChange, setShowAddScheduleItem }) => {
   return (
     <>
-      <div className={styles.overlay}></div>  
+      <div className={styles.overlay} onClick={() => setShowAddScheduleItem(false)}></div>  
       <form onSubmit={handleSubmit} className={styles.form}>
         <button onClick={() => setShowAddScheduleItem(false)} className={styles['hide-btn']}>
           <FiMinusCircle className={styles.icon}/>

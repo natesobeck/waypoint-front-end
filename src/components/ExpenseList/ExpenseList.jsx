@@ -1,9 +1,11 @@
 // npm modules
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 
 // components
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import ExpenseCard from '../ExpenseCard/ExpenseCard'
+import AddExpenseForm from '../AddExpenseForm/AddExpenseForm'
 
 // css
 import styles from './ExpenseList.module.css'
@@ -14,7 +16,6 @@ import * as tripService from '../../services/tripService'
 const ExpenseList = ({ trip, expenses, setExpenses }) => {
 
   const [showAddExpense, setShowAddExpense] = useState(false)
-
   const [formData, setFormData] = useState({
     expense: '',
     location: '',
@@ -22,7 +23,6 @@ const ExpenseList = ({ trip, expenses, setExpenses }) => {
     cost: '',
     note: ''
   })
-
   const [totalExpense, setTotalExpense] = useState(null)
 
   const handleChange = evt => {
@@ -36,6 +36,7 @@ const ExpenseList = ({ trip, expenses, setExpenses }) => {
   const handleSubmit = async (evt) => {
     evt.preventDefault()
     const newExpenses = await tripService.createExpense(formData, trip._id)
+    setShowAddExpense(false)
     setExpenses([...newExpenses])
   }
 
@@ -51,72 +52,28 @@ const ExpenseList = ({ trip, expenses, setExpenses }) => {
 
   return (  
     <div className={styles.container}>
-      {!showAddExpense &&
-        <button 
-          className={styles['add-expense-btn']}
-          onClick={handleShowAddExpense}
+      <button 
+        className={styles['add-expense-btn']}
+        onClick={handleShowAddExpense}
+      >
+        <div 
+          className={styles['btn-text-icon-container']}
         >
-          <div 
-            className={styles['btn-text-icon-container']}
-          >
-            Add an Expense 
-            <IoIosAddCircleOutline 
-              className={styles.icon}
-            />
-          </div>
-        </button>
-      }
-      {showAddExpense &&
-        <form 
-          onSubmit={handleSubmit}
-          className={styles.form}
-        >
-          <h3>Add an Expense</h3>
-          <input 
-            type="text"
-            name="expense"
-            onChange={handleChange}
-            value={formData.expense}
-            placeholder="What expense are you adding? i.e. plane tickets"
-            required
+          Add
+          <IoIosAddCircleOutline 
+            className={styles.icon}
           />
-          <input 
-            type="number"
-            name="cost"
-            onChange={handleChange}
-            value={formData.cost}
-            placeholder="What did it cost?"
-            required
-          />
-          <input 
-            type="text"
-            name="location"
-            onChange={handleChange}
-            value={formData.location}
-            placeholder="Where did you pay it?"
-          />
-          <select
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-          >
-            <option value="" disabled >Select a Category</option>
-            <option value="food" default>Food</option>
-            <option value="lodging">Lodging</option>
-            <option value="activity">Activity</option>
-            <option value="transportation">Transportation</option>
-            <option value="entertainment">Entertainment</option>
-            <option value="miscellaneous">Miscellaneous</option>
-          </select>
-          <textarea
-            name="note"
-            onChange={handleChange}
-            value={formData.name}
-            placeholder="Additional note"
-          />
-          <button className={styles['create-expense-btn']}>Create Expense</button>
-        </form>
-      }
+        </div>
+      </button>
+      {showAddExpense && createPortal(
+        <AddExpenseForm 
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          formData={formData}
+          setShowAddExpense={setShowAddExpense}
+        />,
+        document.body
+      )}
       <h2 className={styles['total-message']}>Total trip cost: <span className={styles.total}>${totalExpense}</span></h2>
       {expenses.length
         ? <div 

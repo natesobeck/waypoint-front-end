@@ -1,7 +1,8 @@
 .form {
   padding: 20px;
-  padding-top: 40px;
-  max-width: 500px;
+  padding-top: 50px;
+  width: 100%;
+  max-width: 450px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -15,25 +16,14 @@
   z-index: 1000;
 }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, .7);
-  z-index: 1000;
+.form input, .form select, .form textarea {
+  margin: 5px 0px;
+  width: 100%;
+  max-width: 500px;
+  padding: 3px;
 }
 
-.address-inputs {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-}
-
-.create-schedule-btn {
+.create-expense-btn {
   border-radius: 0;
   border: none;
   background-color: #2196f3;
@@ -43,41 +33,23 @@
   color: white;
   font-weight: 500;
   width: 100%;
+  max-width: 450px;
+  margin-top: 5px;
 }
 
-.create-schedule-btn:hover {
+.create-expense-btn:hover {
   cursor: pointer;
   background-color: #1d80d2;
 }
 
-.add-schedule-item-btn:hover {
-  cursor: pointer;
-  background-color: rgb(33, 150, 243, .1);
-}
-
-.form-label-input-container {
-  padding: 10px 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content:center;
-  align-items: center;
-  width: 100%;
-}
-
-.form-label-input-container label {
-  font-weight: 500;
-  font-size: 1em;
-  padding-bottom: 3px;
-}
-
-.form-label-input-container select, .form-label-input-container input {
-  padding: 3px;
-  text-align: center;
-  margin-left: 0;
-}
-
-.form-label-input-container select {
-  width: 100%;
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, .7);
+  z-index: 1000;
 }
 
 .hide-btn {

@@ -1,10 +1,11 @@
 // component
 import ScheduleDay from "../ScheduleDay/ScheduleDay"
+import AddScheduleItemForm from "../AddScheduleItemForm.jsx/AddScheduleItemForm"
 import { IoIosAddCircleOutline } from "react-icons/io"
 
 // npm modules
 import { useState } from "react"
-import DatePicker from "react-datepicker"
+import { createPortal } from 'react-dom'
 import { useNavigate } from "react-router-dom"
 
 // services
@@ -69,6 +70,19 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
       console.log(newSchedule)
       setSchedule(newSchedule)
     }
+    setShowAddScheduleItem(false)
+    setFormData({
+      name: '',
+      startTime: formData.startTime,
+      endTime: formData.endTime,
+      category: 'entertainment',
+      venue: '',
+      street: '',
+      city: '',
+      state: '',
+      country: '',
+      zipCode: ''
+    })
     navigate(`/trips/${trip._id}`)
   }
 
@@ -104,115 +118,32 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
     )
   }
 
+  // const setEndTime = () => {
+  //   formData.endTime = formData.startTime
+  // }
+
   return (
     <div className={styles.container}>
-      {! showAddScheduleItem && 
-        <button 
-          onClick={handleShowAddScheduleItem} 
-          className={styles['add-schedule-item-btn']}>
-            <div className={styles['btn-text-icon-container']}>
-              <div>Add to my Schedule</div>
-              <IoIosAddCircleOutline className={styles.icon}/>
-            </div>
-        </button>
+      <button 
+        onClick={handleShowAddScheduleItem} 
+        className={styles['add-schedule-item-btn']}>
+          <div className={styles['btn-text-icon-container']}>
+            <div>Add</div>
+            <IoIosAddCircleOutline className={styles.icon}/>
+          </div>
+      </button>
+      {showAddScheduleItem && createPortal(
+        <AddScheduleItemForm 
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          formData={formData}
+          setFormData={setFormData}
+          showAddScheduleItem={showAddScheduleItem}
+          setShowAddScheduleItem={setShowAddScheduleItem}
+        />,
+        document.body
+      )
       }
-      {showAddScheduleItem &&
-      <div className={styles['form-container']}>
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <h3 className={styles.subtitle}>Add to My Schedule</h3>
-          <div className={styles['form-label-input-container']}>
-            <label htmlFor="name-input">What are you doing?</label>
-            <input 
-              required
-              type="text"
-              name="name"
-              id="name-input"
-              value={formData.name || ""}
-              placeholder="Name or brief description of event"
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles['form-label-input-container']}>
-            <label htmlFor="starttime-datepicker">Start Time:</label>
-            <DatePicker 
-              selected={formData.startTime}
-              id="starttime-datepicker"
-              onChange={(date) => (setFormData({...formData, startTime: date}))}
-              showTimeSelect
-              timeFormat="p"
-              dateFormat="Pp"
-              value={formData.startTime}
-            />
-          </div>
-          <div className={styles['form-label-input-container']}>
-            <label htmlFor="endtime-datepicker">End Time:</label>
-            <DatePicker 
-              selected={formData.endTime}
-              id="endtime-datepicker"
-              onChange={(date) => (setFormData({...formData, endTime: date}))}
-              showTimeSelect
-              timeFormat="p"
-              dateFormat="Pp"
-              value={formData.endTime}
-            />
-          </div>
-          <div className={styles['form-label-input-container']}>
-            <label htmlFor="category-select">Category: </label>
-            <select 
-              name="category"
-              id="category-select"
-              value={formData.category}
-              placeholder="Category of Event"
-              onChange={handleChange}
-            >
-              <option value="entertainment">Entertainment</option>
-              <option value="food">Food</option>
-              <option value="fitness">Fitness</option>
-              <option value="transportation">Transportation</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div className={styles['form-label-input-container']}>
-            <label htmlFor="venue-input">Location: </label>
-            <input 
-              required
-              type="text"
-              name="venue"
-              id="venue-input"
-              value={formData.venue || ""}
-              placeholder="Name of venue"
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles['form-label-input-container']}>
-            <label htmlFor="address-inputs">Address: </label>
-            <div id="address-inputs" className={styles['address-inputs']}>
-              <input 
-                type="text"
-                name="street"
-                value={formData.street || ""}
-                placeholder="Street"
-                onChange={handleChange}
-              />
-              <input 
-                type="text"
-                name="city"
-                value={formData.city || ""}
-                placeholder="City"
-                onChange={handleChange}
-              />
-              <input 
-                type="text"
-                name="zipCode"
-                value={formData.zipCode || ""}
-                placeholder="Zip Code"
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-          <button type="submit" className={styles['create-schedule-btn']}>Create Schedule Item</button>
-        </form>
-      </div>}
       {
       <div>
         {schedule.filter(day => day.scheduleItems.length).length

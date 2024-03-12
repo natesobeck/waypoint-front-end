@@ -1,85 +1,16 @@
-// npm packages
-import { useState } from "react"
-import DatePicker from "react-datepicker"
-
 // css
-import styles from './EditScheduleItem.module.css'
+import styles from './AddScheduleItemForm.module.css'
 
-// services
-import * as tripService from "../../services/tripService" 
-
-// components
+//components
+import DatePicker from "react-datepicker"
 import { FiMinusCircle } from "react-icons/fi"
 
-const EditScheduleItem = ({ scheduleItem, tripId, setSchedule, schedule, setShowEditForm, showEditForm }) => {
-
-// set initial state of form to scheduleItem
-  const [formData, setFormData] = useState({
-    name: scheduleItem.name,
-    startTime: new Date(scheduleItem.startTime),
-    endTime: new Date(scheduleItem.endTime),
-    category: scheduleItem.category,
-    venue: scheduleItem.venue,
-    street: scheduleItem.address.street,
-    city: scheduleItem.address.city,
-    state: scheduleItem.address.state,
-    country: scheduleItem.address.country,
-    zipCode: scheduleItem.address.zipCode
-  })
-
-  // allow form inputs to be saved in state
-  const handleChange = evt => {
-    setFormData({ ...formData, [evt.target.name]: evt.target.value})
-  }
-  
-  //handle form submission logic
-  const handleSubmit = (evt) => {
-    // prevent the page refresh
-    evt.preventDefault()
-    // adjust the form data to match the back end data structure to use in HandleSubmit
-    const adjustedFormData = {
-      name: formData.name,
-      startTime: formData.startTime.toString(),
-      endTime: formData.endTime.toString(),
-      category: formData.category,
-      venue: formData.venue,
-      address: {
-        street: formData.street,
-        city: formData.city,
-        state: formData.state,
-        country: formData.country,
-        zipCode: formData.zipCode
-      },
-      _id: scheduleItem._id
-    }
-    // call the service function to update the item
-    tripService.updateScheduleItem(tripId, scheduleItem._id, adjustedFormData)
-    // find the day of the updated schedule
-    const scheduleDay = schedule.find(day => 
-      new Date(day.date).toLocaleDateString() === new Date(adjustedFormData.startTime).toLocaleDateString()
-    )
-    const updatedScheduleDay = {
-      date: scheduleDay.date,
-      scheduleItems: [...scheduleDay.scheduleItems.filter(item => item._id !== adjustedFormData._id), adjustedFormData].sort((a, b) => {
-        return new Date(a.startTime).valueOf() - new Date(b.startTime).valueOf()
-      }),
-      _id: scheduleDay._id
-    }
-    const filteredSchedule = schedule.filter(day => {
-      return new Date(day.date).toLocaleDateString() !== new Date(updatedScheduleDay.date).toLocaleDateString()
-    })
-    setSchedule([...filteredSchedule, updatedScheduleDay].sort((a, b) => {
-      return new Date(a.date).valueOf() - new Date(b.date).valueOf()
-    }))
-    // hide the edit form
-    setShowEditForm(!showEditForm)
-  }
-
-  return (  
+const AddScheduleItemForm = ({ handleSubmit, formData, setFormData, handleChange, setShowAddScheduleItem }) => {
+  return (
     <>
-      <div className={styles.overlay}></div>
+      <div className={styles.overlay}></div>  
       <form onSubmit={handleSubmit} className={styles.form}>
-        <button onClick={() => setShowEditForm(false)} className={styles['hide-btn']}>
+        <button onClick={() => setShowAddScheduleItem(false)} className={styles['hide-btn']}>
           <FiMinusCircle className={styles.icon}/>
         </button>
         <div className={styles['form-label-input-container']}>
@@ -113,6 +44,8 @@ const EditScheduleItem = ({ scheduleItem, tripId, setSchedule, schedule, setShow
             id="endtime-datepicker"
             onChange={(date) => (setFormData({...formData, endTime: date}))}
             showTimeSelect
+            minDate={formData.startTime}
+            maxDate={formData.startTime}
             timeFormat="p"
             dateFormat="Pp"
             value={formData.endTime}
@@ -150,7 +83,6 @@ const EditScheduleItem = ({ scheduleItem, tripId, setSchedule, schedule, setShow
           <label htmlFor="address-inputs">Address: </label>
           <div id="address-inputs" className={styles['address-inputs']}>
             <input 
-              required
               type="text"
               name="street"
               value={formData.street || ""}
@@ -158,7 +90,6 @@ const EditScheduleItem = ({ scheduleItem, tripId, setSchedule, schedule, setShow
               onChange={handleChange}
             />
             <input 
-              required
               type="text"
               name="city"
               value={formData.city || ""}
@@ -166,7 +97,6 @@ const EditScheduleItem = ({ scheduleItem, tripId, setSchedule, schedule, setShow
               onChange={handleChange}
             />
             <input 
-              required
               type="text"
               name="zipCode"
               value={formData.zipCode || ""}
@@ -175,10 +105,10 @@ const EditScheduleItem = ({ scheduleItem, tripId, setSchedule, schedule, setShow
             />
           </div>
         </div>
-        <button type="submit" className={styles['create-schedule-btn']}>Save</button>
+        <button type="submit" className={styles['create-schedule-btn']}>Create Schedule Item</button>
       </form>
     </>
   )
 }
 
-export default EditScheduleItem;
+export default AddScheduleItemForm

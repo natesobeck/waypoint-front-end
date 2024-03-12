@@ -8,6 +8,7 @@ import { MdEdit } from "react-icons/md";
 
 // npm packages
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
 
 const ScheduleItem = ({ scheduleItem, handleDeleteItem, tripId, setSchedule, schedule }) => {
   
@@ -21,7 +22,7 @@ const ScheduleItem = ({ scheduleItem, handleDeleteItem, tripId, setSchedule, sch
       </div>
       <div className={styles['schedule-content']}>
         <h4 className={styles.name}>{scheduleItem.name}</h4>
-        <p>{scheduleItem.location}</p>
+        <p className={styles.details}>{scheduleItem.location}</p>
         <p>{scheduleItem.category}</p>
         <div className={styles['address-container']}>
           {scheduleItem.address.street.length ? `${scheduleItem.address.street}, ${scheduleItem.address.city}, ${scheduleItem.address.zipCode}` : 'No Known Address'}
@@ -31,7 +32,18 @@ const ScheduleItem = ({ scheduleItem, handleDeleteItem, tripId, setSchedule, sch
         <button onClick={() => handleDeleteItem(scheduleItem)} className={`${styles['delete-btn']} ${styles.btn}`}><MdDelete className={styles['delete-icon']}/></button>
         <button onClick={() => setShowEditForm(!showEditForm)} className={`${styles['edit-btn']} ${styles.btn}`}><MdEdit className={styles['edit-icon']}/></button>
       </div>
-      {showEditForm && <EditScheduleItem scheduleItem={scheduleItem} tripId={tripId} setSchedule={setSchedule} schedule={schedule} setShowEditForm={setShowEditForm} showEditForm={showEditForm}/>}
+      {showEditForm && createPortal(
+        <EditScheduleItem 
+          scheduleItem={scheduleItem} 
+          tripId={tripId} 
+          setSchedule={setSchedule} 
+          schedule={schedule} 
+          setShowEditForm={setShowEditForm} 
+          showEditForm={showEditForm}
+        />,
+        document.body
+      )
+      }
     </div>
   )
 }

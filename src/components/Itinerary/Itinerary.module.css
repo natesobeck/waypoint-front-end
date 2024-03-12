@@ -4,70 +4,31 @@
   border-radius: 10px;
 }
 
-.form {
-  margin-top: 30px;
-  padding: 20px;
-  width: 100%;
-  max-width: 500px;
-  font-size: 1em;
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(255, 255, 255, .8);
-  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, .1));
-  border-radius: 10px;
-  color: rgba(0, 0, 0, .8);
-  text-align: center;
-}
-
-.form-label-input-container {
-  padding: 10px 0px;
-  display: flex;
-  justify-content:space-between;
-}
-
-.address-inputs {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.form-label-input-container label {
-  font-weight: 500;
-}
-
-.create-schedule-btn {
-  border-radius: 0;
-  border: none;
-  background-color: #2196f3;
-  padding: 10px 0px;
-  font-size: 1em;
-  border-radius: 3px;
-  color: white;
-  font-weight: 500;
-}
-
-.create-schedule-btn:hover, .add-schedule-item-btn:hover {
-  cursor: pointer;
-  background-color: #1d80d2;
-}
-
-.form-label-input-container select, .form-label-input-container input {
-  width: 280px;
-  padding: 3px;
-}
-
 .add-schedule-item-btn {
-  padding: 10px;
   border: none;
-  background-color: #2196f3;
-  color: white;
-  font-size: 1.2em;
+  background-color: rgb(245, 245, 245, .9);
+  padding: 8px;
+  color: rgb(33, 150, 243);
+  font-size: 1.3em;
+  border: 1px solid rgb(33, 150, 243);
+  border-radius: 10px;
+  transition: background-color 150ms ease-in-out;
   filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, .1));
+  margin-left: 10px;
+  position: sticky;
+  top: 20px;
+}
+
+.add-schedule-item-btn:hover {
+  cursor: pointer;
+  background-color: rgba(165, 213, 252, 0.9);
 }
 
 .icon {
-  font-size: 1.5em;
+  font-size: 1.2em;
   margin-left: 5px;
+  padding: none;
+  fill: #2196f3;
 }
 
 .btn-text-icon-container {

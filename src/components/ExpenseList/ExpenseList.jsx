@@ -38,6 +38,13 @@ const ExpenseList = ({ trip, expenses, setExpenses }) => {
     const newExpenses = await tripService.createExpense(formData, trip._id)
     setShowAddExpense(false)
     setExpenses([...newExpenses])
+    setFormData({
+      expense: '',
+      location: '',
+      category: 'food',
+      cost: '',
+      note: ''
+    })
   }
 
   useEffect(() => {

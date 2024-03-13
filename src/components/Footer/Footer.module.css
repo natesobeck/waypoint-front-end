@@ -6,6 +6,9 @@
   background-image: url('/images/nav-maps.jpg');
   background-size: cover;
   background-position: center;
+  width: 100%;
+  position: sticky;
+  bottom:0;
 }
 
 .footer > ul {

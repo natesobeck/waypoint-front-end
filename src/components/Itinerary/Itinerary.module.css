@@ -47,3 +47,10 @@
   align-items: center;
   justify-content: center;
 }
+
+@media(max-width: 700px) {
+  .container {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}

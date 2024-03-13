@@ -12,11 +12,11 @@
 }
 
 .card-container:first-of-type {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .card-container:last-of-type {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .info-container {
@@ -69,6 +69,12 @@
   border: none;
   background-color: rgb(0, 0, 0, .1);
   transition: background-color 200ms ease-in-out;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn:hover {
@@ -79,4 +85,39 @@
 .btn a {
   color: black;
   text-decoration: none;
+}
+
+.icon {
+  fill: gray;
+  font-size: 2em;
+}
+
+.detailsicon {
+  font-size: 1.1em;
+}
+
+@media(max-width:700px) {
+  .card-container {
+    flex-direction: column;
+    text-align: center;
+    max-width: 450px;
+  }
+
+  .card-header {
+    font-size: .8em;
+  }
+
+  .btn-container {
+    flex-direction: row;
+    border: none;
+    border-top: 1px solid rgba(33, 150, 243, .1);
+    border-bottom: 1px solid rgba(33, 150, 243, .1);
+    margin-bottom: 10px;
+  }
+}
+
+@media(max-width: 1000px) {
+  .card-container {
+    font-size: .9em;
+  }
 }

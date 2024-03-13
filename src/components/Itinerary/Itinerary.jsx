@@ -59,7 +59,6 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
       const newSchedule = [...schedule, scheduleDay].sort((a, b) => {
         return new Date(a.date).valueOf() - new Date(b.date).valueOf()
       }).filter(day => day.scheduleItems.length)
-      console.log(newSchedule)
       setSchedule(newSchedule)
     } else {
       const newSchedule = schedule.map(day => 
@@ -67,7 +66,6 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
         ? scheduleDay
         : day
       ).filter(day => day.scheduleItems.length)
-      console.log(newSchedule)
       setSchedule(newSchedule)
     }
     setShowAddScheduleItem(false)
@@ -91,7 +89,7 @@ const Itinerary = ({ trip, schedule, setSchedule }) => {
   }
 
   const handleDeleteItem = async (scheduleItem) => {
-    const updatedTrip = tripService.deleteScheduleItem(trip._id, scheduleItem._id)
+    const updatedTrip = await tripService.deleteScheduleItem(trip._id, scheduleItem._id)
     console.log(updatedTrip)
     const day = schedule.find(day => {
       return new Date(day.date).toLocaleDateString() === new Date(scheduleItem.startTime).toLocaleDateString()

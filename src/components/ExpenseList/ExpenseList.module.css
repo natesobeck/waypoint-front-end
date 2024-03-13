@@ -1,6 +1,6 @@
 .container {
   border-top: 1px solid rgb(0, 0, 0, .2);
-  padding: 20px;
+  padding: 20px 0px;
   border-radius: 10px;
 }
 
@@ -79,7 +79,7 @@
   width: 90%;
 }
 
-.expense-list-container {
+.expense-list-container, .empty {
   background-color: rgba(33, 150, 243, .1);
   padding: 10px 20px 20px 20px;
   display: flex;
@@ -89,23 +89,26 @@
 }
 
 .total {
-  color: rgb(205, 80, 90);
-  font-weight: bold;
+  color: rgb(205, 80, 90, 1);
+  font-weight: 500;
 }
 
 .total-message {
   padding: 10px;
   font-size: 1.5em;
-  font-weight: 600;
+  font-weight: 400;
   background-color: rgba(33, 150, 243, .4);
   margin: unset;
   margin-top: 20px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  text-align: center;
 }
 
 .empty {
   font-weight: 400;
   font-size: 1.2em;
   padding-left: 10px;
+  margin-top: unset;
+  text-align: center;
 }

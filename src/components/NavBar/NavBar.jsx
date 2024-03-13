@@ -6,10 +6,8 @@ import styles from './NavBar.module.css'
 
 const handleActiveSelection = (evt) => {
   const liEls = document.querySelectorAll(`.${styles.item}`)
-  console.log(evt.target)
   liEls.forEach(li => {
     if (li === evt.target || li.children === evt.target) {
-      console.log(li)
       li.classList.add(`${styles['active']}`)
     } else if (li.classList.contains(`${styles['active']}`) && li !== evt.target) {
       li.classList.remove(`${styles['active']}`)
@@ -23,10 +21,10 @@ const NavBar = ({ user, handleLogout }) => {
       <nav className="main-nav">
         {user ?
           <ul>
-            <li>Welcome, {user.name}</li>
+            {/* <li>Welcome, {user.name}</li> */}
             <li><Link className={`${styles.item} ${styles.active}`} onClick={handleActiveSelection} to="/">HOME</Link></li>
-            <li><Link className={styles.item} onClick={handleActiveSelection} to="/trips">ALL MY TRIPS</Link></li>
-            <li><Link className={styles.item} onClick={handleActiveSelection} to="/trips/new">ADD A TRIP</Link></li>
+            <li><Link className={styles.item} onClick={handleActiveSelection} to="/trips">MY TRIPS</Link></li>
+            <li><Link className={styles.item} onClick={handleActiveSelection} to="/trips/new">ADD</Link></li>
             <li><Link to="" onClick={handleLogout}>LOG OUT</Link></li>
           </ul>
         :

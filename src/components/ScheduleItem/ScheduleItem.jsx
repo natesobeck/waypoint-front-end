@@ -18,7 +18,9 @@ const ScheduleItem = ({ scheduleItem, handleDeleteItem, tripId, setSchedule, sch
   return (  
     <div className={styles.container}>
       <div>
-        <p className={styles.time}>{new Date(scheduleItem.startTime).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })} - {new Date(scheduleItem.endTime).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}</p>
+        <p className={styles.time}>
+          {new Date(scheduleItem.startTime).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })} - {new Date(scheduleItem.endTime).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}
+        </p>
       </div>
       <div className={styles['schedule-content']}>
         <h4 className={styles.name}>{scheduleItem.name}</h4>

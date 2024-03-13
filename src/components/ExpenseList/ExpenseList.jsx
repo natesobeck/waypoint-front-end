@@ -81,7 +81,7 @@ const ExpenseList = ({ trip, expenses, setExpenses }) => {
         />,
         document.body
       )}
-      <h2 className={styles['total-message']}>Total trip cost: <span className={styles.total}>${totalExpense}</span></h2>
+      <h2 className={styles['total-message']}>Total: <span className={styles.total}>${totalExpense}.00</span></h2>
       {expenses.length
         ? <div 
             className={styles['expense-list-container']}

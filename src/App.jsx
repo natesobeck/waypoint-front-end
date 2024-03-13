@@ -65,7 +65,8 @@ function App() {
   useEffect(() => {
     const fetchAllTrips = async () => {
       const tripsData = await tripService.index()
-      setTrips(tripsData)
+      const usersTripsData = tripsData.filter(trip => user.profile === trip.addedBy)
+      setTrips(usersTripsData)
     }
     if (user) fetchAllTrips()
   }, [user])

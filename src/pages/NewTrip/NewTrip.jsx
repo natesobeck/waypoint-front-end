@@ -121,7 +121,9 @@ const NewTrip = (props) => {
           <DatePicker 
             selected={formData.departureDate}
             id="departure-datepicker"
-            onChange={(date) => (setFormData({...formData, departureDate: date}))}
+            onChange={(date) => (setFormData({...formData, departureDate: date, returnDate: date}))}
+            portalId="root-portal"
+            withPortal
           />
         </div>
         <div className={styles['input-container']}>
@@ -130,6 +132,9 @@ const NewTrip = (props) => {
             selected={formData.returnDate}
             id="departure-datepicker"
             onChange={(date) => (setFormData({...formData, returnDate: date}))}
+            portalId="root-portal"
+            withPortal
+            minDate={formData.departureDate}
           />
         </div>
         <button type="submit" className={styles["create-btn"]}>Create Your Trip</button>

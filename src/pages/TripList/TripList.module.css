@@ -3,9 +3,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
   width: 100%;
   animation: fade-in 1s ease-in-out;
+  padding: 20px;
 }
 
 .subtitle {
@@ -23,4 +24,8 @@
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+@media(max-width: 700px) {
+  
 }

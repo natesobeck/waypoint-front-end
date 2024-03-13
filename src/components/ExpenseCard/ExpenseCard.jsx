@@ -55,7 +55,7 @@ const ExpenseCard = ({ expense, expenses, setExpenses, tripId }) => {
         <CategoryIcon category={expense.category} />
       </div>
       {expense.location &&
-      <p className={styles.location}>{expense.location}</p>}
+      <div className={styles.location}>{expense.location}</div>}
       {expense.note &&
       <p className={styles.note}>{expense.note}</p>}
       <div className={styles['footer-container']}>
@@ -63,7 +63,7 @@ const ExpenseCard = ({ expense, expenses, setExpenses, tripId }) => {
           <button className={`${styles['delete-btn']} ${styles.btn}`} onClick={handleDeleteExpense}><MdDelete className={styles['delete-icon']}/></button>
           <button className={`${styles['edit-btn']} ${styles.btn}`} onClick={handleToggleUpdateForm}><MdEdit className={styles['edit-icon']}/></button>
         </div>
-        <p className={styles.cost}>${expense.cost}</p>
+        <p className={styles.cost}>+${expense.cost}.00</p>
       </div>
 
       {showUpdate && createPortal(

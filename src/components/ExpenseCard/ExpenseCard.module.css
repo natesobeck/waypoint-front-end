@@ -3,9 +3,9 @@
   padding: 20px;
   max-width: calc(100vw - 40px);
   width: 100%;
-  min-width: 400px;
   text-align: left;
   border-bottom: 1px solid rgba(0, 0, 0, .1);
+  font-size: 1.2em;
 }
 
 .card:last-of-type {
@@ -20,19 +20,25 @@
   border-radius: 10px;
 }
 
-.date,
-.category,
-.note,
-.cost,
-.location {
-  margin: 5px 0;
-  font-size: 14px;
+.date, .category, .note, .location {
+  margin: 5px 0px;
+  text-align: unset;
+  font-size: 1em;
   color: #555;
+  padding-left: 10px;
+}
+
+.note {
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .cost {
-  color: rgb(209, 26, 42, .7);
-  font-weight: bold;
+  font-weight: 500;
+  padding: 10px 8px 8px 10px;
+  font-size: 1.2em;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  border-right: 1px solid rgba(0, 0, 0, .1);
 }
 
 .expense-category-pair {
@@ -41,26 +47,10 @@
   align-items: center;
 }
 
-.location {
-  margin: 5px 0px;
-  padding: 5px 0px 10px 0px;
-  font-size: 1em;
-}
-
-.note {
-  padding: 5px 0px 10px 0px;
-}
-
-.cost {
-  padding: 5px;
-  font-size: 1.2em;
-}
-
 .footer-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 10px;
 }
 
 .delete-icon {
@@ -141,3 +131,4 @@
   font-weight: 500;
   width: 250px;
 }
+

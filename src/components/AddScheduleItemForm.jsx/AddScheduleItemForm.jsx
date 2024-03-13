@@ -30,7 +30,7 @@ const AddScheduleItemForm = ({ handleSubmit, formData, setFormData, handleChange
           <DatePicker 
             selected={formData.startTime}
             id="starttime-datepicker"
-            onChange={(date) => (setFormData({...formData, startTime: date}))}
+            onChange={(date) => (setFormData({...formData, startTime: date, endTime: date}))}
             showTimeSelect
             timeFormat="p"
             dateFormat="Pp"

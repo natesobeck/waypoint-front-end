@@ -20,6 +20,7 @@
   font-size: 3em;
   margin-bottom: 50px;
   animation: fade-in 500ms ease-in-out;
+  text-align: center;
 }
 
 .landing-subheader {
@@ -27,6 +28,7 @@
   font-size: 2em;
   margin-bottom: 50px;
   animation: fade-in 500ms ease-in-out 1s forwards;
+  text-align: center;
 }
 
 .login-container {
@@ -41,10 +43,8 @@
 }
 
 .headers-container {
-  margin-bottom: 80px;
-  margin-top: 50px;
-  border-top: 1px solid rgba(0, 0, 0, .2);
-  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  margin-bottom: 30px;
+  padding: 10px;
 }
 
 .add-trip-btn-big {
@@ -71,5 +71,31 @@
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@media(max-width: 700px) {
+  .landing-header {
+    font-size: 1.5em;
+  }
+  .landing-subheader {
+    font-size: 1.3em;
+  }
+  .add-trip-btn-big {
+    font-size: 1.5em;
+  }
+}
+
+@media(max-width: 1000px) {
+  .landing-header {
+    font-size: 2em;
+    margin-bottom: 25px;
+  }
+  .landing-subheader {
+    font-size: 1.7em;
+    margin-bottom: 25px;
+  }
+  .add-trip-btn-big {
+    font-size: 1.5em;
   }
 }

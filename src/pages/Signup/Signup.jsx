@@ -80,8 +80,8 @@ const Signup = ({ handleAuthEvt }) => {
   return (
     <main className={styles.container}>
       <div className={styles.subcontainer}>
-        <h1 className="sub-title">Sign Up</h1>
-        <p className={styles.message}>{message}</p>
+        <h3 className={styles.header}>Sign Up</h3>
+        {message && <p className={styles.message}>{message}</p>}
         <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
             <input type="text" value={name} name="name" onChange={handleChange} placeholder="Name"/>
             <input

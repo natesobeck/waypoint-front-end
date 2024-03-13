@@ -46,7 +46,7 @@ const LoginPage = ({ handleAuthEvt }) => {
   return (
     <main className={styles.container}>
       <div className={styles.subcontainer}>
-        <h1 className="sub-title">Log In</h1>
+        <h1 className={styles.header}>Log In</h1>
         {message && <p className={styles.message}>{message}</p>}
         <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
           <input

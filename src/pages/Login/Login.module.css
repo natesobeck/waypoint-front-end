@@ -35,7 +35,7 @@ input[type="file"]::file-selector-button:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 30px;
+  padding: 20px;
   background-blend-mode: multiply;
 }
 
@@ -44,11 +44,10 @@ input[type="file"]::file-selector-button:focus {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 400px;
-  height: 450px;
-  background-color: rgba(255, 255, 255, .8);
-  filter: drop-shadow(5px 5px rgba(0, 0, 0, .1));
+  background-color: rgba(245, 245, 245, .9);
+  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, .1));
   border-radius: 10px;
+  padding: 20px;
 }
 
 .message {
@@ -121,4 +120,8 @@ input[type="file"]::file-selector-button:focus {
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+
+.header {
+  font-size: 1.5em;
 }

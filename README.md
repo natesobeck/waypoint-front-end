@@ -41,4 +41,4 @@ Organizing for trips can be a pain. Waypoint is a trip planning app that makes i
 - Add splitting ability for expenses
 - Add places to store important info like booking numbers, etc.
 
-See the backend repository [here](https://github.com/natesobeck/waypoint-back-end)
+See the backend repository [here](https://github.com/natesobeck/waypoint-back-end).

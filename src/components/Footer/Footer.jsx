@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { FaLinkedin, FaGithub } from "react-icons/fa"
 
 // css
-import * as styles from './footer.module.css'
+import styles from './footer.module.css'
 
 const Footer = () => {
   return (

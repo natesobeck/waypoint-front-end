@@ -47,11 +47,11 @@
   opacity: 0;
   color: white;
   background-image: linear-gradient(90deg, rgba(100,94,201, .9) 0%, rgba(98,146,232,.9) 50%, rgba(100,149,237,.9) 100%);
-  padding: 40px;
-  font-size: 32px;
+  padding: 30px;
+  font-size: 1.7em;
   border: none;
   transition: background-color 250ms ease-in-out;
-  animation: fade-in 500ms ease-in-out 2s forwards;
+  animation: fade-in 250ms ease-in-out 2s forwards;
 }
 
 .create-btn:hover {

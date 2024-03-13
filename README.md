@@ -12,7 +12,7 @@ Organizing for trips can be a pain. Waypoint is a trip planning app that makes i
 
 - Track your schedule, expenses and packing list for a trip
 - Each resource has full CRUD
-- Streamlines, sleek UI
+- Streamlined, sleek UI
 
 ### 🧑‍💻 Technical Requirements:
 

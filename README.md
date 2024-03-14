@@ -34,6 +34,8 @@ Organizing for trips can be a pain. Waypoint is a trip planning app that makes i
 3. [Boats in water image](https://unsplash.com/photos/three-brown-wooden-boat-on-blue-lake-water-taken-at-daytime-T7K4aEPoGGk) by [Pietro De Grandi](https://unsplash.com/@peter_mc_greats)
 4. [Road image](https://unsplash.com/photos/concrete-rail-road-ZRsJmpt9pNI) by [Luke Stackpoole](https://unsplash.com/@withluke)
 5. [Desk image](https://unsplash.com/photos/black-camera-with-black-eyeglassse--WW8jBak7bo) by [Andyone](https://unsplash.com/@andyoneru)
+6. [Gray concrete road across brown valley during daytime](https://unsplash.com/photos/gray-concrete-road-across-brown-valley-during-daytime-c0I4ahyGIkA) by [Jesse Bowser](https://unsplash.com/@jessebowser)
+7. [Brown grass field under blue sky during daytime](https://unsplash.com/photos/brown-grass-field-under-blue-sky-during-daytime-Wnu2RZlBEWg) by [Erik Mclean](https://unsplash.com/@introspectivedsgn)
 
 ### 🧊 Icebox: 
 - Add ability to add reciept image to an expense

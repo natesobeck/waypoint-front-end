@@ -47,7 +47,7 @@ input[type="file"]::file-selector-button:focus {
   background-color: rgba(245, 245, 245, .9);
   filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, .1));
   border-radius: 10px;
-  padding: 20px;
+  padding: 20px 5px;
 }
 
 .message {
@@ -62,7 +62,6 @@ input[type="file"]::file-selector-button:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 50px;
 }
 
 .button {
@@ -75,6 +74,7 @@ input[type="file"]::file-selector-button:focus {
   border-radius: 3px;
   color: white;
   font-weight: 500;
+  margin-top: 10px;
 }
 
 .button:hover {
@@ -83,12 +83,8 @@ input[type="file"]::file-selector-button:focus {
 }
 
 .form input {
-  margin: 10px;
+  margin: 10px 10px 0px 10px;
   padding: 10px;
-}
-
-.form input:last-of-type {
-  margin-bottom: 20px;
 }
 
 .form input:focus {
@@ -106,10 +102,6 @@ input[type="file"]::file-selector-button:focus {
   border-radius: 3px;
 }
 
-.form div a:first-of-type {
-  margin-top: 10px;
-}
-
 .form div a:hover {
   background-color: rgba(0, 0, 0, .1);
 }
@@ -124,4 +116,6 @@ input[type="file"]::file-selector-button:focus {
 
 .header {
   font-size: 1.5em;
+  margin: 0;
+  margin-bottom: 10px;
 }

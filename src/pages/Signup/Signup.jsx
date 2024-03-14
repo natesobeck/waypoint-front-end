@@ -105,7 +105,7 @@ const Signup = ({ handleAuthEvt }) => {
               onChange={handleChange}
               placeholder="Confirm Password"
             />
-            <label>
+            <label className={styles.photo}>
               <input 
                 type="file" 
                 name="photo" 

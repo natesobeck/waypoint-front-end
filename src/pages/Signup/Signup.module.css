@@ -1,8 +1,7 @@
 input {
-  margin-left: 16px;
   padding: 4px 8px;
   font-size: 16px;
-  width: 300px;
+  width: calc(100% - 20px);
 }
 
 input[type="file"] {
@@ -10,10 +9,16 @@ input[type="file"] {
 }
 
 .container {
+  margin: 80px 0px;
+  background-image: url(/images/dirt-road.jpg);
+  background-size: cover;
+  background-position: bottom;
+  min-height: 500px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin: 30px;
+  align-items: center;
+  background-color: rgba(255, 255, 255, .1);
+  background-blend-mode: color;
 }
 
 .subcontainer {
@@ -24,8 +29,7 @@ input[type="file"] {
   background-color: rgba(245, 245, 245, .9);
   filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, .1));
   border-radius: 10px;
-  padding: 20px;
-  padding-top: 40px;
+  padding: 20px 5px;
 }
 
 .message {
@@ -39,13 +43,12 @@ input[type="file"] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .header {
   font-size: 1.5em;
   margin: unset;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .form-links {
@@ -57,7 +60,7 @@ input[type="file"] {
 }
 
 .button {
-  width: calc(100% - 20px);
+  width: calc(100% - 10px);
   border-radius: 0;
   border: none;
   background-color: #2196f3;
@@ -74,12 +77,16 @@ input[type="file"] {
 }
 
 .form input {
-  margin: 10px;
+  margin: 5px;
   padding: 10px;
 }
 
+.photo {
+  display: none;
+}
+
 .form input:last-of-type {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .form input:focus {
@@ -91,14 +98,10 @@ input[type="file"] {
 .form div a {
   text-decoration: none;
   color: black;
-  width: calc(100% - 20px);
+  width: calc(100% - 10px);
   text-align: center;
   padding: 10px 0px;
   border-radius: 3px;
-}
-
-.form div a:first-of-type {
-  margin-top: 10px;
 }
 
 .form div a:hover {

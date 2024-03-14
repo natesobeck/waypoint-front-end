@@ -1,0 +1,11 @@
+.container {
+  margin: 80px 0px;
+  background-image: url(/images/hilly-road.jpg);
+  background-size: cover;
+  background-position: center;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, .1);
+  background-blend-mode: color;
+}

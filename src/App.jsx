@@ -4,7 +4,8 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 
 // pages
 import Signup from './pages/Signup/Signup'
-import Login from './pages/Login/Login'
+// import Login from './pages/Login/Login'
+import LoginPage from './pages/LoginPage/LoginPage'
 import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
@@ -89,7 +90,7 @@ function App() {
         />
         <Route
           path="/auth/login"
-          element={<Login handleAuthEvt={handleAuthEvt} />}
+          element={<LoginPage handleAuthEvt={handleAuthEvt} />}
         />
         <Route
           path="/auth/change-password"

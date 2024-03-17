@@ -9,7 +9,7 @@ input[type="file"] {
 }
 
 .container {
-  margin: 80px 0px;
+  margin-top: 80px;
   background-image: url(/images/dirt-road.jpg);
   background-size: cover;
   background-position: bottom;

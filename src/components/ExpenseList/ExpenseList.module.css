@@ -1,6 +1,6 @@
 .container {
   border-top: 1px solid rgb(0, 0, 0, .2);
-  padding: 20px 0px;
+  padding: 20px;
   border-radius: 10px;
 }
 
@@ -111,4 +111,10 @@
   padding-left: 10px;
   margin-top: unset;
   text-align: center;
+}
+
+@media(max-width: 700px) {
+  .container {
+    padding: 20px 0px;
+  }
 }

@@ -98,7 +98,7 @@ const TripDetails = () => {
 
   return (  
     <main className={styles.container}>
-      <h1 className={styles.title}>{trip.name}</h1>
+      <h1 className={styles.title}><span>{trip.name}</span></h1>
       <div className={styles['details-container']}>
         <h3 className={styles.destination}>
           <span className={styles.bold}>{trip.destination.city}, {trip.destination.state.length ? `${trip.destination.state}, ` : '' }{trip.destination.country}</span>

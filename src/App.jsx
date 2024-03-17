@@ -18,6 +18,7 @@ import EditTrip from './pages/EditTrip/EditTrip'
 // components
 import NavBar from './components/NavBar/NavBar'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import ScrollToTop from './components/ScrollToTop/ScrollToTop'
 
 // services
 import * as authService from './services/authService'
@@ -74,6 +75,7 @@ function App() {
 
   return (
     <>
+      <ScrollToTop />
       <NavBar user={user} handleLogout={handleLogout} />
       <Routes>
         <Route

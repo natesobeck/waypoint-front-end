@@ -51,7 +51,6 @@
   background-color: rgba(255, 255, 255, .3);
   background-blend-mode: color;
   padding: 40px;
-  font-family: 'Pacifico', cursive;
   font-size: 3.5em;
   color: rgba(25, 25, 25, .85);
   margin: 0;
@@ -59,8 +58,16 @@
   text-align: center;
 }
 
+.title span {
+  font-family: 'Pacifico', cursive;
+  height: 4.5em;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, .1);
+  backdrop-filter: blur(120px)
+}
+
 .details, .destination {
-  font-weight: 500;
+  font-weight: 500; 
   text-align: center;
   font-size: 1.4em;
 }
